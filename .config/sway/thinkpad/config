@@ -1,0 +1,46 @@
+##################################################################################
+#'########:'##::::'##:'####:'##::: ##:'##:::'##:'########:::::'###::::'########::#
+#... ##..:: ##:::: ##:. ##:: ###:: ##: ##::'##:: ##.... ##:::'## ##::: ##.... ##:#
+#::: ##:::: ##:::: ##:: ##:: ####: ##: ##:'##::: ##:::: ##::'##:. ##:: ##:::: ##:#
+#::: ##:::: #########:: ##:: ## ## ##: #####:::: ########::'##:::. ##: ##:::: ##:#
+#::: ##:::: ##.... ##:: ##:: ##. ####: ##. ##::: ##.....::: #########: ##:::: ##:#
+#::: ##:::: ##:::: ##:: ##:: ##:. ###: ##:. ##:: ##:::::::: ##.... ##: ##:::: ##:#
+#::: ##:::: ##:::: ##:'####: ##::. ##: ##::. ##: ##:::::::: ##:::: ##: ########::#
+#:::..:::::..:::::..::....::..::::..::..::::..::..:::::::::..:::::..::........:::#
+##################################################################################
+
+
+include ~/.config/sway/workspaces_name
+
+# Display settings
+output HDMI-A-1 mode 1920x1080 position 0,0
+output LVDS-1 mode 1920x1080 position 1920,0
+
+set $laptop LVDS-1
+set $screen1 HDMI-A-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+exec_always .local/bin/scripts/thinkpad_enable_lid.sh 
+
+# Default outputs for workspaces
+workspace $ws1 outpus $screen1
+workspace $ws2 outpus $screen1
+workspace $ws3 outpus $screen1
+workspace $ws4 outpus $screen1
+workspace $ws5 outpus $screen1
+workspace $ws6 outpus $laptop
+
+
+focus output $screen1
+workspace $ws1
+
+# set power menu
+set $power ~/.config/rofi/720p/powermenu/powermenu.sh
+set $menu ~/.config/rofi/720p/launchers/text/launcher.sh
+
+# set input device
+input * {
+    accel_profile flat
+    pointer_accel 0.4
+}
+

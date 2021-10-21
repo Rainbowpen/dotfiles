@@ -1,0 +1,15 @@
+file:///home/simon/Documents
+file:///home/simon/Music
+file:///home/simon/Pictures
+file:///home/simon/Videos
+file:///home/simon/Downloads
+sftp://lena@10.0.0.1:2699/home/lena lena
+sftp://sinest.sytes.net:2699/home/lena Lena-outside
+ftp://10.0.0.2/ FileServer-family
+sftp://simonjan@10.0.0.2/home/simonjan Fileserver-simonjan
+sftp://ksu:2503/home/simon lab-simon
+sftp://stmanager@ksu:2503/home/stmanager lab-stmanager
+sftp://minecraft.sinest.cf:5566/home/simon minecraft.sinest.cf
+ftp://sinest.ueuo.com/ sinest.ueuo.com
+sftp://10.0.0.3/home/simon pi-usb
+sftp://truenas.lan/mnt/mypool/simons-space simon@truenas.lan

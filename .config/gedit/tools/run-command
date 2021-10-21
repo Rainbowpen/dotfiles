@@ -1,0 +1,14 @@
+#!/bin/sh
+# [Gedit Tool]
+# Name=Run command
+# Comment=Execute a custom command and put its output in a new document
+# Input=nothing
+# Output=new-document
+# Applicability=all
+# Save-files=nothing
+# Languages=
+# Shortcut=<Primary><Alt>r
+
+
+#TODO: use "gconftool-2 -g /desktop/gnome/applications/terminal/exec"
+eval $(zenity --entry --title="Run Command - gedit" --text="Command to run:")

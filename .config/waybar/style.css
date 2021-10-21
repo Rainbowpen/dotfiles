@@ -1,0 +1,104 @@
+/* COLORS */
+
+/* Nord */
+@define-color light #eceff4;
+@define-color dark #2e3440;
+@define-color warning #ebcb8b;
+@define-color critical #d08770;
+@define-color mode #4c566a;
+@define-color workspaces #5e81ac;
+@define-color workspacesfocused #81a1c1;
+@define-color sound #d8dee9;
+@define-color network #4c566a;
+@define-color memory #88c0d0;
+@define-color cpu #434c5e;
+@define-color temp #d8dee9;
+@define-color tray #5e81ac;
+@define-color battery #88c0d0;
+@define-color time #eceff4;
+@define-color battery-charging #59e959;
+
+/* bar style */
+* {
+    border:        none;
+    border-radius: 0;
+    font-family:   Roboto, Helvetica, Arial, sans-serif;
+    /*font-family: monospace;*/
+    font-size:     17px;
+    box-shadow:    none;
+    text-shadow:   none;
+    transition-duration: 0.3s;
+}
+
+window {
+    color:      rgba(217, 216, 216, 1);
+    background: rgba(35, 31, 32, 0.7);
+}
+
+window#waybar.solo {
+    color:      rgba(217, 216, 216, 1);
+    background: rgba(35, 31, 32, 0.9);
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding:    0 5px;
+    border-top: 3px solid rgba(217, 216, 216, 0);
+    color:      rgba(217, 216, 216, 0.4);
+}
+
+#workspaces button.visible {
+    color:      rgba(217, 216, 216, 1);
+}
+
+#workspaces button:hover {
+    color:      rgba(35, 31, 32, 0.9);
+    background: rgba(217, 216, 216, 1);
+}
+
+#workspaces button.focused {
+    border-top: 3px solid rgba(217, 216, 216, 1);
+    border-bottom: 0px solid rgba(217, 216, 216, 1);
+}
+
+#workspaces button.urgent {
+    color:      rgba(238, 46, 36, 1);
+}
+
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #tray, #clock{
+    padding: 2px 6px 0px 6px;
+    border-radius:5px;
+    margin:     1px 1px;
+    /*min-width:  25px;*/
+}
+
+#custom-spotify_py{
+    padding: 2px 6px 0px 6px;
+    border-radius:5px;
+    margin:     1px 1px;
+    color:      rgba(35, 31, 32, 0.9);
+    background: rgba(217, 216, 216, 1);
+    font-family: monospace;
+}
+
+#battery.warning, 
+#cpu.warning,
+#memory.warning {
+    background: @warning;
+    color:      @dark;
+}
+
+#battery.critical,
+#cpu.critical,
+#memory.critical {
+    background: @critical;
+    color:      @light;
+}
+
+#battery.charging {
+    background: @battery-charging;
+    color:      @dark;
+}

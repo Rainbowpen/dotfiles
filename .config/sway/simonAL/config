@@ -1,0 +1,42 @@
+#######################################################################
+#:'######::'####:'##::::'##::'#######::'##::: ##::::'###::::'##:::::::#
+#'##... ##:. ##:: ###::'###:'##.... ##: ###:: ##:::'## ##::: ##:::::::#
+# ##:::..::: ##:: ####'####: ##:::: ##: ####: ##::'##:. ##:: ##:::::::#
+#. ######::: ##:: ## ### ##: ##:::: ##: ## ## ##:'##:::. ##: ##:::::::#
+#:..... ##:: ##:: ##. #: ##: ##:::: ##: ##. ####: #########: ##:::::::#
+#'##::: ##:: ##:: ##:.:: ##: ##:::: ##: ##:. ###: ##.... ##: ##:::::::#
+#. ######::'####: ##:::: ##:. #######:: ##::. ##: ##:::: ##: ########:#
+#:......:::....::..:::::..:::.......:::..::::..::..:::::..::........::#
+#######################################################################
+
+
+include ~/.config/sway/workspaces_name
+
+# Display settings
+output HDMI-A-1 mode 1920x1080 position 0,0
+output eDP-1 mode 1920x1080 position 1920,0 scale 1
+
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+exec_always .local/bin/scripts/simonAL_enable_lid.sh 
+
+# Default outputs for workspaces
+workspace $ws1 outpus HDMI-A-1
+workspace $ws2 outpus HDMI-A-1
+workspace $ws3 outpus HDMI-A-1
+workspace $ws4 outpus HDMI-A-1
+workspace $ws5 outpus HDMI-A-1
+workspace $ws6 outpus eDP-1
+
+
+focus output HDMI-A-1
+workspace $ws1
+
+
+# set power menu
+set $power ~/.config/rofi/powermenu/powermenu.sh
+set $menu ~/.config/rofi/launchers/text/launcher.sh
+set $window_selector ~/.local/bin/scripts/switch_windown.sh
+
+

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="c">
+  <snippet override="c-do">
+    <text><![CDATA[do{
+	$0
+} while ($1);]]></text>
+    <tag>do</tag>
+    <description>do .. while</description>
+  </snippet>
+  <snippet override="c-else">
+    <text><![CDATA[else{
+	$0
+}]]></text>
+    <tag>else</tag>
+    <description>else</description>
+  </snippet>
+  <snippet override="c-elif">
+    <text><![CDATA[else if (${1:condition}){
+	$0
+}]]></text>
+    <tag>elif</tag>
+    <description>else if</description>
+  </snippet>
+  <snippet override="c-for">
+    <text><![CDATA[for (${1:i} = ${2:0}; ${1:i} < ${3:count}; ${1:i} += ${4:1}){
+	$0
+}]]></text>
+    <tag>for</tag>
+    <description>for loop</description>
+  </snippet>
+  <snippet override="c-if">
+    <text><![CDATA[if (${1:condition}){
+	$0
+}]]></text>
+    <tag>if</tag>
+    <description>if</description>
+  </snippet>
+  <snippet override="c-main">
+    <text><![CDATA[int main (int argc, char *argv[]){
+	$0
+	return 0;
+}]]></text>
+    <tag>main</tag>
+    <description>main</description>
+  </snippet>
+  <snippet override="c-struct">
+    <text><![CDATA[struct ${1:name}{
+	${0:/* data */}
+};]]></text>
+    <tag>struct</tag>
+    <description>struct</description>
+  </snippet>
+  <snippet override="c-while">
+    <text><![CDATA[while (${1:condition}){
+	$0
+}]]></text>
+    <tag>while</tag>
+    <description>while loop</description>
+  </snippet>
+</snippets>

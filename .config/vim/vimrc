@@ -1,0 +1,173 @@
+" --------------------------------
+"| This vimrc created by Simonjan |
+" --------------------------------
+
+
+
+" ---System path & Plugin install---
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+" set rtp+=~/.config/vim/bundle/Vundle.vim/
+
+" set config file to $XDG_DATA_HOME/vim/
+set undodir=~/.local/share/vim/undo
+set directory=~/.local/share/vim/swap
+set backupdir=~/.local/share/vim/backup
+if !has('nvim')
+	set viminfo+='1000,n~/.local/share/vim/viminfo
+else
+	set viminfo+='1000,n~/.local/share/nvim/viminfo
+endif
+set runtimepath=~/.config/vim,$VIMRUNTIME,~/.config/vim/after,~/.config/vim/bundle/Vundle.vim/
+
+
+" alternatively, pass a path where Vundle should install plugins
+call vundle#begin('~/.config/vim/bundle')
+
+" let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'tmhedberg/SimpylFold'
+    Plugin 'itchyny/lightline.vim'
+    Plugin 'ycm-core/YouCompleteMe'
+    "Plugin 'dracula/vim', { 'name': 'dracula' }
+    Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+    Plugin 'scrooloose/syntastic'
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+
+" ---THEME---
+"colorscheme dracula "dracula theme
+colorscheme onehalfdark  "Theme dark
+"colorscheme onehalflight  "Theme light and that is bad idea!!!
+"let g:lightline = { 'colorscheme': 'darcula' } "Status line theme for lightline
+let g:lightline = { 'colorscheme': 'onehalfdark' } "Status line theme for lightline
+"let g:lightline = { 'colorscheme': 'wombat' } "Status line theme for lightline
+let &t_ut='' " Make kitty terminal background not transparent
+set t_Co=256 "讓vim支援256色"
+
+
+
+" ---FONTS---
+set encoding=utf-8
+"設置字體"
+set guifont="Fira Code Retina":h13 "Monaco:h13         
+
+
+
+" ---EDIT---
+"去掉vi的一致性"
+set nocompatible
+"顯示行號"
+"set number
+set number relativenumber
+syntax on   "開啟語法高亮"
+"set colorcolumn=80
+highlight ColorColumn ctermbg=236
+let &colorcolumn="80,".join(range(81,999),",")
+" 隱藏滾動條"    
+set guioptions-=r 
+set guioptions-=L
+set guioptions-=b
+set showtabline=1 "if 0 隱藏頂部標簽欄
+hi Comment ctermfg=cyan "註解顏色
+set nowrap  "設置不折行"
+set fileformat=unix "設置以unix的格式保存文件"
+set cindent     "設置C樣式的縮進格式"
+set showmatch   "顯示匹配的括號"
+set scrolloff=5     "距離頂部和底部5行"
+set laststatus=2    "命令行為兩行"
+set fenc=utf-8      "文件編碼"
+set backspace=2
+set mouse=a     "啟用鼠標"
+set selection=exclusive
+set selectmode=mouse,key
+set matchtime=5
+set ignorecase      "忽略大小寫"
+set incsearch
+set hlsearch        "高亮搜索項"
+set list
+set listchars=tab:→\ ,trail:·,precedes:←,extends:→
+set noexpandtab     "不允許擴展table"
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=4     "設置table長度"
+set tabstop=4   	"同上"
+set whichwrap+=<,>,h,l
+set autoread
+set cursorline      "突出顯示當前行"
+set cursorcolumn        "突出顯示當前列"
+set clipboard=unnamedplus " Enable clipboard
+
+" Explore
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
+
+" YCM
+let g:ycm_filetype_blacklist = {'python': 1} " Disable ycm sup for python files
+let g:ycm_global_ycm_extra_conf = '~/.config/vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+
+" Kite
+set completeopt+=menuone
+set completeopt+=noselect
+set completeopt-=preview
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_w = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_q = 0
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_quiet_messages = { 
+			\"type": "style",
+			\"level": "warning" }
+let g:syntastic_python_checkers=['pylint'] 
+let g:syntastic_python_python_exec = 'python' 
+let g:syntastic_python_pylint_exe = 'python -m pylint'
+
+
+" ---Control---
+set splitbelow
+set splitright
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" map keys for vertical/horizontal split panel
+nnoremap <leader>vs <C-w>v
+nnoremap <leader>sv <C-w>s
+
+" map keys for resize vertical/horizontal window:
+nnoremap <silent> + :exe "resize " . (winheight(0) * 4/3)<CR>
+nnoremap <silent> _ :exe "resize " . (winheight(0) * 3/4)<CR>
+nnoremap <silent> > :exe "vertical resize " . (winwidth(0) * 4/3)<CR>
+nnoremap <silent> < :exe "vertical resize " . (winwidth(0) * 3/4)<CR>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+
+

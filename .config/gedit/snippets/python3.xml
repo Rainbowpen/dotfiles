@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="python3">
+  <snippet>
+    <text><![CDATA[for ${1:int var} in range (${2:count}):]]></text>
+    <description>for</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet>
+    <tag>print</tag>
+    <text><![CDATA[print("${1:string}" + str(${2:var}))]]></text>
+    <description>print</description>
+  </snippet>
+  <snippet id="def">
+    <text><![CDATA[def ${1:fname}(${2:self}):
+	${3:pass}]]></text>
+    <description>New Function</description>
+    <tag>def</tag>
+  </snippet>
+  <snippet>
+    <tag>main</tag>
+    <text><![CDATA[if __name__ == '__main__':
+    	${1:sys.exit(main())}
+    	$0]]></text>
+    <description>main</description>
+  </snippet>
+  <snippet id="try">
+    <text><![CDATA[try:
+	$1
+except ${2:Error}:
+]]></text>
+    <description>try</description>
+    <tag>try</tag>
+  </snippet>
+  <snippet id="from">
+    <text><![CDATA[from $1 import $2
+$0]]></text>
+    <description>from</description>
+    <tag>from</tag>
+  </snippet>
+  <snippet id="if">
+    <text><![CDATA[if ${1:condition}:
+	$0]]></text>
+    <description>if</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet id="elif">
+    <text><![CDATA[elif ${1:condition}:
+	$0]]></text>
+    <description>elif</description>
+    <tag>elif</tag>
+  </snippet>
+  <snippet id="else">
+    <text><![CDATA[else:
+	$0]]></text>
+    <description>else</description>
+    <tag>else</tag>
+  </snippet>
+  <snippet id="while">
+    <text><![CDATA[while ${1:condition}:
+	$0]]></text>
+    <tag>while</tag>
+    <description>while loop</description>
+  </snippet>
+  <snippet id="insert">
+    <text><![CDATA["${1:$GEDIT_SELECTED_TEXT}"]]></text>
+    <accelerator><![CDATA[<Primary>2]]></accelerator>
+    <description>Inside String: Insert "…"</description>
+  </snippet>
+  <snippet id="insert-1">
+    <text><![CDATA['${1:$GEDIT_SELECTED_TEXT}']]></text>
+    <accelerator><![CDATA[<Primary>apostrophe]]></accelerator>
+    <description>Inside String: Insert '…'</description>
+  </snippet>
+  <snippet id=".">
+    <text><![CDATA[self.]]></text>
+    <description>self</description>
+    <tag>.</tag>
+  </snippet>
+  <snippet id="set">
+    <text><![CDATA[def set$1(self, ${2:newValue}): self._$1 = $2]]></text>
+    <description>New Set Method</description>
+    <tag>set</tag>
+  </snippet>
+</snippets>

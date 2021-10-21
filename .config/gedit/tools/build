@@ -1,0 +1,42 @@
+#!/bin/sh
+# [Gedit Tool]
+# Name=Build c++
+# Comment=Run “make” in the document directory
+# Input=nothing
+# Output=output-panel
+# Shortcut=<Control>F8
+# Applicability=local
+# Save-files=all
+# Languages=
+
+this_dir="${PWD##*/}"
+echo "dir=$this_dir"
+if [ -d build ]; then
+	echo "no mkdir build"
+else
+	mkdir build
+	echo "mkdir build"
+fi
+#g++ *.cpp *.h *.c -o build/$this_dir
+c_file=""
+#c_list=[find '*.c' -o -name '*.cpp' -o -name '*.h']
+for i in "$PWD"/*.cpp  ;do 
+	if [ -f "$i" ]; then
+		echo $i
+		c_file+="$i "
+	fi
+ done
+ for i in "$PWD"/*.h  ;do 
+	if [ -f $i ]; then
+		echo $i
+		c_file+="$i ";
+	fi
+done
+for i in "$PWD"/*.c  ;do 
+	if [ -f $i ]; then
+		echo $i
+		c_file+="$i ";
+	fi
+done
+#echo $c_file
+g++ $c_file -o build/$this_dir

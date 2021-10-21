@@ -1,0 +1,15 @@
+#sway
+#waybar
+#swayidle
+#swaylock
+#slurp
+#grim
+#mako # notifcation
+#brightnessctl # brightness controls
+#wl-clipboard
+#wl-clipboard-x11 		# AUR
+#rofi-lbonn-wayland-git # AUR
+#lxappearance # curser theme controls
+#pavucontrol # sound controls gui tool
+#autotiling # sway or i3 auto swatch between splith and splitv # AUR
+#wdisplays # gui monitor config tool ## option

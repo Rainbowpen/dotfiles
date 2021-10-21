@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="cpp">
+  <snippet override="cpp-if">
+    <text><![CDATA[if (${1:condition}){
+	$0
+}]]></text>
+    <description>if ..</description>
+    <tag>if</tag>
+  </snippet>
+  <snippet override="cpp-for">
+    <text><![CDATA[for (${1:unsigned int} ${2:i} = ${3:0}; ${2:i} < ${4:count}; ${2:i} += ${5:1}){
+	$0
+}]]></text>
+    <description>for loop</description>
+    <tag>for</tag>
+  </snippet>
+  <snippet override="cpp-do">
+    <text><![CDATA[do{
+	$0
+} while ($1 );]]></text>
+    <description>do .. while</description>
+    <tag>do</tag>
+  </snippet>
+  <snippet override="cpp-main">
+    <text><![CDATA[#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+int main (int argc, char const* argv[]){
+	$0
+	return 0;
+}]]></text>
+    <description>main</description>
+    <tag>main</tag>
+  </snippet>
+  <snippet override="cpp-namespace">
+    <text><![CDATA[namespace ${1:ns}{
+	$0
+};
+]]></text>
+    <description>namespace ..</description>
+    <tag>namespace</tag>
+  </snippet>
+  <snippet override="cpp-readfile">
+    <text><![CDATA[std::vector<uint8_t> v;
+if (FILE* fp = fopen (${1:"filename"}, "r")){
+	uint8_t buf[1024];
+	while (size_t len = fread (buf, 1, sizeof (buf), fp))
+		v.insert (v.end(), buf, buf + len);
+	fclose(fp);
+}
+$0]]></text>
+    <description>Read File Into Vector</description>
+    <tag>readfile</tag>
+  </snippet>
+  <snippet override="cpp-struct">
+    <text><![CDATA[struct ${1:name}{
+	${0:/* data */}
+};]]></text>
+    <description>struct ..</description>
+    <tag>struct</tag>
+  </snippet>
+  <snippet override="cpp-while">
+    <text><![CDATA[while ($1){
+	$0
+}]]></text>
+    <tag>while</tag>
+    <description>while</description>
+  </snippet>
+</snippets>

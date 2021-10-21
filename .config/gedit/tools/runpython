@@ -1,0 +1,12 @@
+#!/bin/sh
+# [Gedit Tool]
+# Name=runPython
+# Input=nothing
+# Output=output-panel
+# Applicability=all
+# Save-files=nothing
+# Shortcut=<Alt>p
+# Languages=python3
+
+DIR=$GEDIT_CURRENT_DOCUMENT_PATH
+python3 $DIR

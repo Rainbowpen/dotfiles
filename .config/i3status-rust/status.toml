@@ -1,0 +1,65 @@
+
+[theme]
+name = "solarized-dark"
+
+[theme.overrides]
+idle_bg = "#2f2f3a"
+idle_fg = "#ffffff"
+info_bg = "#8be9fd"
+info_fg = "#2f2f3a"
+good_bg = "#50FA7B"
+good_fg = "#2f2f3a"
+warning_bg = "#F1FA8C"
+warning_fg = "#2f2f3a"
+critical_bg = "#FF5555"
+critical_fg = "#ffffff"
+separator = "\ue0b2"
+separator_bg = "auto"
+separator_fg = "auto"
+#alternating_tint_bg = "#000000"
+#alternating_tint_fg = "#000000"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "focused_window"
+max_width = 40
+show_marks = "visible"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
+clickable = true
+interval = 1
+warning_mem = 50
+warning_swap = 50
+critical_mem = 80
+critical_swap = 80
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["prev", "play", "next"]
+
+[[block]]
+block = "sound"
+step_width = 3
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}%"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%R"
+#format = "%a %m/%d %R"
+

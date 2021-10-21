@@ -1,0 +1,106 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 23,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": [ "custom/spotify_py", "cpu", "memory", "pulseaudio", "network", "idle_inhibitor", "tray", "battery", "clock" ],
+    "sway/mode": {
+        "format": " {}"
+    },
+    "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": false
+    },
+    "sway/window": {
+        "max-length": 45,
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 20,
+		"spacing": 10
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        "format-alt": " {:%a %d %b %H:%M}",
+        "format-alt-click": "click-left",
+        "tooltip": false
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": " {capacity}%",
+        "format-full": "",
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip": true
+    },
+    "network": {
+        "format": "{icon}",
+        "format-icons": {
+            "wifi": "",
+            "ethernet": "",
+            "disconnected": ""
+        },
+    	"tooltip": true,
+    	"tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    	"tooltip-format-ethernet": "{ifname}",
+    	"tooltip-format-disconnected": "Disconnected"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+    "custom/spotify_py": {
+        "exec": "/usr/bin/python3 /home/simon/.config/waybar/modules/custom_modules/mediaplayer.py --player spotify",
+        "format": " {}",
+        "return-type": "json",
+        "on-click": "playerctl --player spotify play-pause",
+        "on-scroll-up": "playerctl --player spotify next",
+        "on-scroll-down": "playerctl --player spotify previous"
+},
+	"cpu": {
+    	"interval": 2,
+    	"format": " {usage}%",
+		"states": {
+            "warning": 70,
+            "critical": 90
+        },
+    	"max-length": 10
+	},
+	"memory": {
+    	"interval": 1,
+    	"format": " {percentage} %",
+		"states": {
+            "warning": 70,
+            "critical": 90
+        },
+    	"max-length": 10
+	},
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+        	"activated": "",
+        	"deactivated": ""
+        }
+    }
+}

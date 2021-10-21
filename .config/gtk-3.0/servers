@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"
+      xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
+      xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
+>
+  <bookmark href="sftp://sinest.sytes.net:2699/" added="2018-12-02T07:10:47Z" modified="2019-05-09T13:47:45Z" visited="2019-05-09T13:47:45Z">
+    <title>/ on sinest.sytes.net</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="nautilus" exec="&apos;nautilus %u&apos;" modified="2018-12-23T03:24:34Z" count="2"/>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-05-09T13:47:45Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://120.114.138.177:5566/" added="2018-12-06T15:24:05Z" modified="2019-06-26T23:44:21Z" visited="2019-06-26T23:44:21Z">
+    <title>/ on 120.114.138.177</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="nautilus" exec="&apos;nautilus %u&apos;" modified="2018-12-07T01:07:17Z" count="5"/>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-06-26T23:44:21Z" count="3"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://192.168.2.2:2701/" added="2019-01-26T15:17:26Z" modified="2019-01-26T16:17:36Z" visited="2019-01-26T16:17:36Z">
+    <title>/ on 192.168.2.2</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="nautilus" exec="&apos;nautilus %u&apos;" modified="2019-01-26T16:17:36Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://10.0.0.1:2699/" added="2019-04-02T10:49:08Z" modified="2019-05-03T14:42:21Z" visited="2019-05-03T14:42:21Z">
+    <title>/ on 10.0.0.1</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-05-03T14:42:21Z" count="10"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://simon@10.0.0.1:2700/" added="2019-06-28T14:21:56Z" modified="2019-06-28T15:00:51Z" visited="2019-06-28T15:00:51Z">
+    <title>/ on 10.0.0.1</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-06-28T15:00:51Z" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://sinest.ueuo.com/" added="2019-08-23T13:21:38Z" modified="2019-11-04T13:59:50Z" visited="2019-11-04T13:59:50Z">
+    <title>/ on sinest.ueuo.com</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-11-04T13:59:50Z" count="5"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://10.0.0.2/" added="2019-09-28T11:03:06Z" modified="2019-09-28T11:03:06Z" visited="2019-09-28T11:03:06Z">
+    <title>/ on 10.0.0.2</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-09-28T11:03:06Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://10.0.0.2/" added="2019-09-28T11:06:12Z" modified="2019-09-28T11:06:12Z" visited="2019-09-28T11:06:12Z">
+    <title>/ on 10.0.0.2</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-09-28T11:06:12Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://192.168.1.3/" added="2019-10-21T12:22:26Z" modified="2019-10-21T12:22:26Z" visited="2019-10-21T12:22:26Z">
+    <title>/ on 192.168.1.3</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-10-21T12:22:26Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://stmanager@ksu:2503/" added="2019-10-21T13:17:37Z" modified="2019-10-21T13:17:37Z" visited="2019-10-21T13:17:37Z">
+    <title>/ on ksu</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2019-10-21T13:17:37Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://10.0.0.3/" added="2020-12-27T14:28:29.770455Z" modified="2020-12-27T14:28:29.770460Z" visited="2020-12-27T14:28:29.770456Z">
+    <title>/ on 10.0.0.3</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2020-12-27T14:28:29.770458Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://lena@10.0.0.1:2699/" added="2021-01-12T13:57:03.696973Z" modified="2021-01-12T13:57:03.696979Z" visited="2021-01-12T13:57:03.696974Z">
+    <title>/ on 10.0.0.1</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2021-01-12T13:57:03.696976Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="smb://truenas.lan/" added="2021-10-06T12:13:34.815454Z" modified="2021-10-06T12:13:34.815470Z" visited="2021-10-06T12:13:34.815458Z">
+    <title>Windows shares on truenas.lan</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2021-10-06T12:13:34.815462Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="smb://simon@truenas.lan/simons-space/" added="2021-10-06T12:15:42.649658Z" modified="2021-10-06T12:15:42.649662Z" visited="2021-10-06T12:15:42.649659Z">
+    <title>simons-space on truenas.lan</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2021-10-06T12:15:42.649661Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="sftp://truenas.lan/" added="2021-10-09T06:56:17.603531Z" modified="2021-10-09T06:56:17.603535Z" visited="2021-10-09T06:56:17.603532Z">
+    <title>/ on truenas.lan</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2021-10-09T06:56:17.603533Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>

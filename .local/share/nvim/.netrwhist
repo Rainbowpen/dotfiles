@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/simon/.local/share/nvim/plugged/YouCompleteMe'
+let g:netrw_dirhist_7='/home/simon/work/others-dotfiles/dotfiles'
+let g:netrw_dirhist_6='/home/simon/work/others-dotfiles/dotfiles/.config'
+let g:netrw_dirhist_5='/home/simon/work/others-dotfiles/dotfiles'
+let g:netrw_dirhist_4='/home/simon/work/others-dotfiles'
+let g:netrw_dirhist_3='/home/simon/work/rust_learing/geuss_number/src'
+let g:netrw_dirhist_2='/home/simon/work/rust_learing/geuss_number'
+let g:netrw_dirhist_1='/home/simon/work/kitty/kitty'
+let g:netrw_dirhist_0='/home/simon/work/hello-rust/src'
+let g:netrw_dirhist_9='/home/simon/.config/sway'
