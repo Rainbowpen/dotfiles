@@ -1,8 +1,6 @@
 require('bufferline').setup {
   options = {
     numbers = "none",
-    number_style = "superscript", -- buffer_id at index 1, ordinal at index 2
-    mappings = true,
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
@@ -15,7 +13,7 @@ require('bufferline').setup {
     max_name_length = 18,
     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
     tab_size = 10,
-    diagnostics = "nvim_lsp",
+    diagnostics = "coc",
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       return "("..count..")"
     end,

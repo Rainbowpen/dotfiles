@@ -10,18 +10,20 @@ filetype off                  " required
 set viminfo+='1000,n~/.local/share/nvim/viminfo
 
 call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'ycm-core/YouCompleteMe'
+    " Plug 'ycm-core/YouCompleteMe'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'scrooloose/syntastic'
     Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-    Plug 'ryanoasis/vim-devicons' " vimscript
+    "Plug 'ryanoasis/vim-devicons' " vimscript
 	Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 	Plug 'kyazdani42/nvim-tree.lua'
-	Plug 'akinsho/nvim-bufferline.lua'
+	Plug 'akinsho/bufferline.nvim'
 	Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'rust-lang/rust.vim'
 call plug#end()
+
 filetype plugin indent on    " required
 
 " --- include lua config
@@ -47,9 +49,10 @@ lua require('galaxyline/statusline')
 
 " nvim-tree
 source $HOME/.config/nvim/nvim-tree.vim
+lua require('nvim-tree-conf')
 
 " YCM
-source $HOME/.config/nvim/ycm.vim
+" source $HOME/.config/nvim/ycm.vim
 
 " Kite
 source $HOME/.config/nvim/kite.vim

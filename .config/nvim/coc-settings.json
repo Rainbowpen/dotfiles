@@ -1,0 +1,9 @@
+{
+    "rust-anayzer.enabe": "true",
+    "codeLens.enable": "true",
+    "rust-analyzer.lens.methodReferences": "true",
+    "rust-analyzer.hoverActions.linksInHover": "true",
+    "rust-analyzer.callInfo.full": "true",
+    "clangd.enabled": "true",
+    "yaml.format.enable": "true"
+}

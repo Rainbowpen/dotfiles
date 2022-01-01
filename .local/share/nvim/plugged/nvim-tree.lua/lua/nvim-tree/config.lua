@@ -24,12 +24,6 @@ function M.get_icon_state()
       symlink = "",
       symlink_open = "",
     },
-    lsp = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    },
   }
 
   local user_icons = vim.g.nvim_tree_icons
@@ -51,26 +45,17 @@ function M.get_icon_state()
         icons.folder_icons[key] = val
       end
     end
-    for key, val in pairs(user_icons.lsp or {}) do
-      if icons.lsp[key] then
-        icons.lsp[key] = val
-      end
-    end
   end
 
+  local has_devicons = pcall(require, 'nvim-web-devicons')
   return {
-    show_file_icon = show_icons.files == 1 and vim.g.nvim_web_devicons == 1,
+    show_file_icon = show_icons.files == 1,
     show_folder_icon = show_icons.folders == 1,
     show_git_icon = show_icons.git == 1,
     show_folder_arrows = show_icons.folder_arrows == 1,
+    has_devicons = has_devicons,
     icons = icons
   }
-end
-
-function M.use_git()
-  return M.get_icon_state().show_git_icon
-      or vim.g.nvim_tree_git_hl == 1
-      or vim.g.nvim_tree_gitignore == 1
 end
 
 function M.nvim_tree_callback(callback_name)
@@ -79,14 +64,23 @@ end
 
 function M.window_options()
   local opts = {}
-  if vim.g.nvim_tree_side == 'right' then
+  local side = require'nvim-tree.view'.View.side
+  if side == 'right' then
     opts.open_command = 'h'
     opts.preview_command = 'l'
     opts.split_command = 'aboveleft'
-  else
+  elseif side == "left" then
     opts.open_command = 'l'
     opts.preview_command = 'h'
     opts.split_command = 'belowright'
+  elseif side == "top" then
+    opts.open_command = 'j'
+    opts.preview_command = 'k'
+    opts.split_command = 'bot'
+  else
+    opts.open_command = 'k'
+    opts.preview_command = 'j'
+    opts.split_command = 'top'
   end
 
   return opts
@@ -98,6 +92,7 @@ function M.window_picker_exclude()
   end
   return {
     filetype = {
+      "notify",
       "packer",
       "qf"
     }

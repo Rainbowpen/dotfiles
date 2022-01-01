@@ -1,5 +1,5 @@
 <h1 align="center">
-  nvim-bufferline.lua
+  bufferline.nvim
 </h1>
 
 <p align="center">A <i>snazzy</i> 💅 buffer line (with minimal tab integration) for Neovim built using <b>lua</b>.</p>
@@ -9,31 +9,35 @@
 This plugin shamelessly attempts to emulate the aesthetics of GUI text editors/Doom Emacs.
 It was inspired by a screenshot of DOOM Emacs using [centaur tabs](https://github.com/ema2159/centaur-tabs).
 
-Table of Contents
-=================
+# Table of Contents
 
-   * [Features](#features)
-      * [Alternate styling](#alternate-styling)
-      * [LSP error indicators](#lsp-error-indicators)
-      * [Sidebar offset](#sidebar-offset)
-      * [Buffer numbers](#buffer-numbers)
-      * [Buffer pick](#buffer-pick)
-      * [Unique buffer name](#unique-buffer-name)
-      * [Close icons](#close-icons)
-      * [Buffer re-ordering](#buffer-re-ordering)
-   * [Requirements](#requirements)
-   * [Installation](#installation)
-   * [Caveats](#caveats)
-   * [Usage](#usage)
-   * [Configuration](#configuration)
-      * [LSP indicators](#lsp-indicators)
-      * [Conditional buffer based LSP indicators](#conditional-buffer-based-lsp-indicators)
-      * [Regular tab sizes](#regular-tab-sizes)
-      * [Sorting](#sorting)
-      * [Sidebar offset](#sidebar-offset-1)
-      * [Buffer pick functionality](#buffer-pick-functionality)
-      * [Custom area](#custom-area)
-   * [FAQ](#faq)
+- [Features](#features)
+  - [Alternate styling](#alternate-styling)
+  - [LSP error indicators](#lsp-error-indicators)
+  - [Buffer groups](#buffer-groups)
+  - [Sidebar offset](#sidebar-offset)
+  - [Buffer numbers](#buffer-numbers)
+  - [Buffer pick](#buffer-pick)
+  - [Unique buffer names](#unique-buffer-names)
+  - [Close icons](#close-icons)
+  - [Buffer re-ordering](#buffer-re-ordering)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Caveats](#caveats)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Feature overview](#feature-overview)
+  - [LSP indicators](#lsp-indicators)
+  - [Conditional buffer based LSP indicators](#conditional-buffer-based-lsp-indicators)
+  - [Groups](#groups)
+  - [Regular tab sizes](#regular-tab-sizes)
+  - [Numbers](#numbers)
+  - [Sorting](#sorting)
+  - [Sidebar offset](#sidebar-offset-1)
+  - [Buffer pick functionality](#buffer-pick-functionality)
+  - [Mouse actions](#mouse-actions)
+  - [Custom area](#custom-area)
+- [FAQ](#faq)
 
 ## Features
 
@@ -47,7 +51,8 @@ Table of Contents
 
 ![slanted tabs](https://user-images.githubusercontent.com/22454918/111992989-fec39b80-8b0d-11eb-851b-010641196a04.png)
 
-**NOTE**: tested with [`kitty`](https://github.com/kovidgoyal/kitty), [`alacritty`](https://github.com/alacritty/alacritty), `gnome terminal`, results may vary depending on your terminal emulator of choice
+**NOTE**: some terminals require special characters to be padded so set the style to `padded_slant` if the appearance isn't right in your terminal emulator. Please keep in mind
+though that results may vary depending on your terminal emulator of choice and this style might will not work for all terminals
 
 see: `:h bufferline-styling`
 
@@ -55,7 +60,9 @@ see: `:h bufferline-styling`
 
 ![LSP error](https://user-images.githubusercontent.com/22454918/111993085-1d299700-8b0e-11eb-96eb-c1c289e36b08.png)
 
-**NOTE:** This only works with neovim's native lsp.
+#### Buffer Groups
+
+![bufferline_group_toggle](https://user-images.githubusercontent.com/22454918/132410772-0a4c0b95-63bb-4281-8a4e-a652458c3f0f.gif)
 
 #### Sidebar offset
 
@@ -67,16 +74,13 @@ see: `:h bufferline-styling`
 
 Ordinal number and buffer number with a customized number styles.
 
-![both with default style](https://user-images.githubusercontent.com/8133242/113400253-159ea380-93d4-11eb-822c-974d728a6bcf.png)
-
-![both with customized style](https://user-images.githubusercontent.com/8133242/113400265-1a635780-93d4-11eb-8085-adc328385cb5.png)
-
+![numbers](https://user-images.githubusercontent.com/22454918/130784872-936d4c55-b9dd-413b-871d-7bc66caf8f17.png)
 
 #### Buffer pick
 
 ![bufferline pick](https://user-images.githubusercontent.com/22454918/111993296-5bbf5180-8b0e-11eb-9ad9-fcf9619436fd.gif)
 
-#### Unique buffer name
+#### Unique buffer names
 
 ![duplicate names](https://user-images.githubusercontent.com/22454918/111993343-6da0f480-8b0e-11eb-8d93-44019458d2c9.png)
 
@@ -92,25 +96,36 @@ This order can be persisted between sessions (enabled by default).
 
 ## Requirements
 
-- Neovim 0.5+ (_nightly_)
+- Neovim 0.5+
 - A patched font (see [nerd fonts](https://github.com/ryanoasis/nerd-fonts))
 
 ## Installation
 
-**lua**
+**Lua**
 
 ```lua
 -- using packer.nvim
-use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
+use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 ```
 
-**vimscript**
+**Vimscript**
 
 ```vim
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 " Plug 'ryanoasis/vim-devicons' Icons without colours
-Plug 'akinsho/nvim-bufferline.lua'
+Plug 'akinsho/bufferline.nvim'
 ```
+
+## What about Tabs?
+
+This plugin, as the name implies, shows a user their buffers _not tabs_ if you're unclear as to what the difference
+is please read `:help tabpage`. It does include minimal indicators which show how many tabs you have open and which is focused.
+These are not however part of the bufferline proper and tabs cannot currently replace buffers.
+
+If you are interested in _contributing a PR_ for tab related functionality please raise an issue to discuss.
+
+**N.B:** please **don't open a feature request** for this. It isn't something I plan on _personally_ implementing but will happily help
+a willing contributor who wants to add this themselves.
 
 ## Caveats
 
@@ -129,15 +144,26 @@ Plug 'akinsho/nvim-bufferline.lua'
 
 ## Usage
 
-See the docs for details `:h nvim-bufferline.lua`
+See the docs for details `:h bufferline.nvim`
 
 You need to be using `termguicolors` for this plugin to work, as it reads the hex `gui` color values
 of various highlight groups.
 
+**Vimscript**
+
 ```vim
-set termguicolors
 " In your init.lua or init.vim
-lua require("bufferline").setup{}
+set termguicolors
+lua << EOF
+require("bufferline").setup{}
+EOF
+```
+
+**Lua**
+
+```lua
+vim.opt.termguicolors = true
+require("bufferline").setup{}
 ```
 
 You can close buffers by clicking the close icon or by _right clicking_ the tab anywhere
@@ -158,10 +184,11 @@ nnoremap <silent><mymap> :BufferLineMovePrev<CR>
 nnoremap <silent>be :BufferLineSortByExtension<CR>
 nnoremap <silent>bd :BufferLineSortByDirectory<CR>
 nnoremap <silent><mymap> :lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>
+
 ```
 
 If you manually arrange your buffers using `:BufferLineMove{Prev|Next}` during an nvim session this can be persisted for the session.
-This is enabled by default but you need to ensure that your `sessionopts+=globals` otherwise the session file will
+This is enabled by default but you need to ensure that your `sessionoptions+=globals` otherwise the session file will
 not track global variables which is the mechanism used to store your sort order.
 
 ## Configuration
@@ -169,9 +196,13 @@ not track global variables which is the mechanism used to store your sort order.
 ```lua
 require('bufferline').setup {
   options = {
-    numbers = "none" | "ordinal" | "buffer_id" | "both",
-    number_style = "superscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
-    mappings = true | false,
+    numbers = "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    --- @deprecated, please specify numbers as a function to customize the styling
+    number_style = "superscript" | "subscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
+    close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
+    right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+    left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+    middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
@@ -181,10 +212,21 @@ require('bufferline').setup {
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
+    --- name_formatter can be used to change the buffer's label in the bufferline.
+    --- Please note some names can/will break the
+    --- bufferline so use this at your discretion knowing that it has
+    --- some limitations that will *NOT* be fixed.
+    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+      -- remove extension from markdown files for example
+      if buf.name:match('%.md') then
+        return vim.fn.fnamemodify(buf.name, ':t:r')
+      end
+    end,
     max_name_length = 18,
     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
     tab_size = 18,
-    diagnostics = false | "nvim_lsp",
+    diagnostics = false | "nvim_lsp" | "coc",
+    diagnostics_update_in_insert = false,
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       return "("..count..")"
     end,
@@ -204,7 +246,7 @@ require('bufferline').setup {
         return true
       end
     end,
-    offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "left" | "center" | "right"}},
+    offsets = {{filetype = "NvimTree", text = "File Explorer" | function , text_align = "left" | "center" | "right"}},
     show_buffer_icons = true | false, -- disable filetype icons for buffers
     show_buffer_close_icons = true | false,
     show_close_icon = true | false,
@@ -215,24 +257,26 @@ require('bufferline').setup {
     separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
     enforce_regular_tabs = false | true,
     always_show_bufferline = true | false,
-    sort_by = 'extension' | 'relative_directory' | 'directory' | function(buffer_a, buffer_b)
+    sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
       -- add custom logic
       return buffer_a.modified > buffer_b.modified
     end
   }
 }
+
 ```
+
+## Feature overview
 
 ### LSP indicators
 
-By setting `diagnostics = "nvim_lsp"` you will get an indicator in the bufferline for a given tab if it has any errors
+By setting `diagnostics = "nvim_lsp" | "coc"` you will get an indicator in the bufferline for a given tab if it has any errors
 This will allow you to tell at a glance if a particular buffer has errors. Currently only the native neovim lsp is
 supported, mainly because it has the easiest API for fetching all errors for all buffers (with an attached lsp client).
 
 In order to customise the appearance of the diagnostic count you can pass a custom function in your setup.
 
 ![custom indicator](https://user-images.githubusercontent.com/22454918/113215394-b1180300-9272-11eb-9632-8a9f9aae99fa.png)
-
 
 <details>
   <summary><b>Snippet</b></summary>
@@ -253,7 +297,6 @@ end
 ```
 
 </details>
-
 
 ![diagnostics_indicator](https://user-images.githubusercontent.com/4028913/112573484-9ee92100-8da9-11eb-9ffd-da9cb9cae3a6.png)
 
@@ -298,6 +341,85 @@ end
 The first bufferline shows `diagnostic.lua` as the currently opened `current` buffer. It has LSP reported errors, but they don't show up in the bufferline.
 The second bufferline shows `500-nvim-bufferline.lua` as the currently opened `current` buffer. Because the 'faulty' `diagnostic.lua` buffer has now transitioned from `current` to `visible`, the LSP indicator does show up.
 
+### Groups (Experimental)
+
+![groups](https://user-images.githubusercontent.com/22454918/132225763-1bfeb6cb-40e1-414b-8355-05726778b8b8.png)
+
+The buffers this plugin shows can be grouped based on a users configuration. Groups are a way of allowing a user to visualize related buffers in clusters
+as well as operating on them together e.g. by clicking the group indicator all grouped buffers can be hidden. They are partially inspired by
+google chrome's tabs as well as centaur tab's groups.
+
+In order to group buffers specify a list of groups in your config e.g.
+
+```lua
+groups = {
+  options = {
+    toggle_hidden_on_enter = true -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+  },
+  items = {
+    {
+      name = "Tests", -- Mandatory
+      highlight = {gui = "underline", guisp = "blue"}, -- Optional
+      priority = 2, -- determines where it will appear relative to other groups (Optional)
+      icon = "", -- Optional
+      matcher = function(buf) -- Mandatory
+        return buf.filename:match('%_test') or buf.filename:match('%_spec')
+      end,
+    }
+    {
+      name = "Docs"
+      highlight = {gui = "undercurl", guisp = "green"},
+      auto_close = false,  -- whether or not close this group if it doesn't contain the current buffer
+      matcher = function(buf)
+        return buf.filename:match('%.md') or buf.filename:match('%.txt')
+      end,
+      separator = { -- Optional
+        style = require('bufferline.groups').separator.tab
+      },
+    }
+  }
+}
+```
+
+#### Ordering groups
+
+Groups are ordered by their position in the `items` list, the first group shows at the start of the bufferline and so on.
+You might want to order groups _around_ the un-grouped buffers e.g. `| group 1 | buf 1 (ungrouped) | buf 2 (ungrouped) | group 2 |`.
+In this case builtin groups are provided (for now just the `ungrouped`) builtin so you can achieve the order above using
+
+```lua
+local groups = require('bufferline.groups')
+groups = {
+  items = {
+    {name = "group 1", ... },
+    groups.builtin.ungrouped, -- the ungrouped buffers will be in the middle of the grouped ones
+    {name = "group 2", ...},
+  }
+}
+```
+
+#### Group commands
+
+![bufferline_group_toggle](https://user-images.githubusercontent.com/22454918/132410772-0a4c0b95-63bb-4281-8a4e-a652458c3f0f.gif)
+
+Grouped buffers can also be interacted with using a few commands namely
+These commands can be <kbd>tab</kbd> completed to open a list of the current groups.
+
+- `:BufferLineGroupClose` <tab> - which will close all buffers in this group
+- `:BufferLineGroupToggle` <tab> - which will hide or show a group
+
+Grouped buffers can also be interacted with using the `require('bufferline').group_action` API.
+
+e.g.
+
+```lua
+function _G.__group_open()
+  require('bufferline').group_action(<GROUP_NAME>, function(buf)
+    vim.cmd('vsplit '..buf.path)
+  end)
+end
+```
+
 ### Regular tab sizes
 
 Generally this plugin enforces a minimum tab size so that the buffer line
@@ -307,9 +429,45 @@ length specified (+ the other indicators).
 If you set `enforce_regular_tabs = true` tabs will be prevented from extending beyond
 the tab size and all tabs will be the same length
 
+### Numbers
+
+![numbers](https://user-images.githubusercontent.com/22454918/130784872-936d4c55-b9dd-413b-871d-7bc66caf8f17.png)
+
+You can prefix buffer names with either the `ordinal` or `buffer id`, using the `numbers` option.
+Currently this can be specified as either a string of `buffer_id` | `ordinal` or a function
+This function allows maximum flexibility in determining the appearance of this section.
+It is passed a table with the following keys:
+
+- `raise` - a helper function to convert the passed number to superscript e.g. `raise(id)`.
+- `lower` - a helper function to convert the passed number to subscript e.g. `lower(id)`.
+- `ordinal` - The buffer ordinal number.
+- `id` - The buffer ID.
+
+```lua
+  -- For ⁸·₂
+  numbers = function(opts)
+    return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
+  end,
+
+  -- For ₈.₂
+  numbers = function(opts)
+    return string.format('%s.%s', opts.lower(opts.id), opts.lower(opts.ordinal))
+  end,
+
+  -- For 2.)8.) - change he order of arguments to change the order in the string
+  numbers = function(opts)
+    return string.format('%s.)%s.)', opts.ordinal, opts.id)
+  end,
+
+  -- For 8|² -
+  numbers = function(opts)
+    return string.format('%s|%s.)', opts.id, opts.raise(opts.ordinal))
+  end,
+```
+
 ### Sorting
 
-Bufferline allows you to sort the visible buffers by `extension` or `directory`:
+Bufferline allows you to sort the visible buffers by `extension`, `directory` or `tabs`:
 
 **NOTE**: If using a plugin such as `vim-rooter` and you want to sort by path, prefer using `directory` rather than
 `relative_directory`. Relative directory works by ordering relative paths first, however if you move from
@@ -320,12 +478,14 @@ buffers will now be relative.
 " Using vim commands
 :BufferLineSortByExtension
 :BufferLineSortByDirectory
+:BufferLineSortByTabs
 ```
 
 ```lua
 -- Or using lua functions
 :lua require'bufferline'.sort_buffers_by('extension')
 :lua require'bufferline'.sort_buffers_by('directory')
+:lua require'bufferline'.sort_buffers_by('tabs')
 ```
 
 For more advanced usage you can provide a custom compare function which will
@@ -345,6 +505,12 @@ When using a sorted bufferline it's advisable that you use the `BufferLineCycleN
 commands since these will traverse the bufferline bufferlist in order whereas `bnext` and `bprev` will cycle
 buffers according to the buffer numbers given by vim.
 
+### Closing buffers
+
+Bufferline provides _a few_ commands to handle closing buffers visible in the tabline using `BufferLineCloseRight` and `BufferLineCloseLeft`.
+As their names suggest these commands will close all visible buffers to the left or right of the current buffer.
+Another way to close any single buffer is the `BufferLinePickClose` command ([see below](#buffer-pick-functionality)).
+
 ### Sidebar offset
 
 You can prevent the bufferline drawing above a **vertical** sidebar split such as a file explorer.
@@ -352,10 +518,33 @@ To do this you must set the `offsets` configuration option to a list of tables c
 _NOTE:_ this is only relevant for left or right aligned sidebar windows such as `NvimTree`, `NERDTree` or `Vista`
 
 ```lua
-offsets = {{filetype = "NvimTree", text = "File Explorer", highlight = "Directory", text_align = "left"}}
+offsets = {
+  {
+    filetype = "NvimTree",
+    text = "File Explorer",
+    highlight = "Directory",
+    text_align = "left"
+  }
+}
 ```
 
 The `filetype` is used to check whether a particular window is a match, the `text` is _optional_ and will show above the window if specified.
+`text` can be either a string or a function which should also return a string. See the example below.
+_NOTE:_ to find the `filetype` of a side panel go into the buffer and run `:echo &filetype` to print its `filetype`.
+
+```lua
+offsets = {
+  {
+    filetype = "NvimTree",
+    text = function()
+      return vim.fn.getcwd()
+    end,
+    highlight = "Directory",
+    text_align = "left"
+  }
+}
+```
+
 If it is too long it will be truncated. The highlight controls what highlight is shown above the window.
 You can also change the alignment of the text in the offset section using `text_align` which can be set to `left`, `right` or `center`.
 You can also add a `padding` key which should be an integer if you want the offset to be larger than the window width.
@@ -373,6 +562,85 @@ then pick a buffer by typing the character for that specific
 buffer that appears
 
 ![bufferline_pick](https://user-images.githubusercontent.com/22454918/111994691-f2404280-8b0f-11eb-9bc1-6664ccb93154.gif)
+
+Likewise, `BufferLinePickClose` closes the buffer instead of viewing it.
+
+### `BufferLineGoToBuffer`
+
+You can select a buffer by it's _visible_ position in the bufferline using the `BufferLineGoToBuffer`
+command. This means that if you have 60 buffers open but only 7 visible in the bufferline
+then using `BufferLineGoToBuffer 4` will go to the 4th visible buffer not necessarily the 5 in the
+absolute list of open buffers.
+
+```
+<- (30) | buf31 | buf32 | buf33 | buf34 | buf35 | buf36 | buf37 (24) ->
+```
+
+Using `BufferLineGoToBuffer 4` will open `buf34` as it is the 4th visible buffer.
+
+This can then be mapped using
+
+```vim
+nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+```
+
+### Mouse actions
+
+You can configure different type of mouse clicks to behave differently. The current mouse click types are
+
+- Left - `left_mouse_command`
+- Right - `right_mouse_command`
+- Middle - `middle_mouse_command`
+- Close - `close_command`
+
+Currently left mouse opens the selected buffer but the command can be tweaked using `left_mouse_command`
+which can be specified as either a lua function or string which uses [lua's printf style string formatting](https://www.lua.org/pil/20.html) e.g. `buffer %d`
+
+You can do things like open a vertical split on right clicking the buffer name for example using
+
+```lua
+right_mouse_command = "vertical sbuffer %d"
+```
+
+Or you can set the value to a function and handle the click action however you please for example you can use
+another plugin such as [bufdelete.nvim](https://github.com/famiu/bufdelete.nvim) to handle closing the buffer using the `close_command`.
+
+```lua
+left_mouse_command = function(bufnum)
+   require('bufdelete').bufdelete(bufnum, true)
+end
+```
+
+### Custom functions
+
+A user can also execute arbitrary functions against a buffer using the
+`buf_exec` function. For example
+
+```lua
+    require('bufferline').buf_exec(
+        4, -- the forth visible buffer from the left
+        user_function -- an arbitrary user function which gets passed the buffer
+    )
+
+    -- e.g.
+    function _G.bdel(num)
+        require('bufferline').buf_exec(num, function(buf, visible_buffers)
+            vim.cmd('bdelete '..buf.id)
+        end
+    end
+
+    vim.cmd [[
+        command -count Bdel <Cmd>lua _G.bdel(<count>)<CR>
+    ]]
+```
 
 ### Custom area
 
@@ -393,22 +661,22 @@ custom_areas = {
     local hint = vim.lsp.diagnostic.get_count(0, [[Hint]])
 
     if error ~= 0 then
-    result[1] = {text = "  " .. error, guifg = "#EC5241"}
+      table.insert(result, {text = "  " .. error, guifg = "#EC5241"})
     end
 
     if warning ~= 0 then
-    result[2] = {text = "  " .. warning, guifg = "#EFB839"}
+      table.insert(result, {text = "  " .. warning, guifg = "#EFB839"})
     end
 
     if hint ~= 0 then
-    result[3] = {text = "  " .. hint, guifg = "#A3BA5E"}
+      table.insert(result, {text = "  " .. hint, guifg = "#A3BA5E"})
     end
 
     if info ~= 0 then
-    result[4] = {text = "  " .. info, guifg = "#7EA9A7"}
-  end
-  return result
-end
+      table.insert(result, {text = "  " .. info, guifg = "#7EA9A7"})
+    end
+    return result
+  end,
 }
 ```
 
@@ -424,3 +692,12 @@ not block rendering the tabline.
 
   If you are using `airline` make sure you set `let g:airline#extensions#tabline#enabled = 0`.
   If you are using `lightline` this also takes over the tabline by default and needs to be deactivated.
+
+- **Doesn't this plugin go against the "vim way"?**
+
+  This is much better explained by [buftablines's author](https://github.com/ap/vim-buftabline#why-this-and-not-vim-tabs).
+  Please read this for a more comprehensive answer to this questions. The short answer to this is
+  buffers represent files in nvim and tabs, a collection of windows (or just one). Vim natively allows visualising tabs i.e. collections
+  of window, but not just the files that are open. There are _endless_ debates on this topic, but allowing a user to see what files they
+  have open doesn't go against any clearly stated vim philosophy. It's a text editor and not a religion 🙏.
+  Obviously this won't appeal to everyone, which isn't really a feasible objective anyway.
