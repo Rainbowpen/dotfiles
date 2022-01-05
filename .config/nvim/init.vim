@@ -19,7 +19,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'akinsho/bufferline.nvim'
-	Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+	Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'rust-lang/rust.vim'
 call plug#end()
@@ -66,11 +66,9 @@ source $HOME/.config/nvim/autocmd.vim
 " syntastic
 source $HOME/.config/nvim/syntastic.vim
 
-" indentLine
-"source $HOME/.config/nvim/indentLine.vim
-
 " indent-blankline
-source $HOME/.config/nvim/indentBlankline.vim
+" source $HOME/.config/nvim/indentBlankline.vim
+lua require('indent-blankline-conf')
 
 " colorizer
 lua require('colorizer-conf')
