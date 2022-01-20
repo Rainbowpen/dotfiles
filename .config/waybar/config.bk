@@ -4,7 +4,7 @@
     "height": 23,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["custom/spotify_py", "sway/window"],
+    "modules-center": ["custom/spotify_py"],
     "modules-right": [ "cpu", "memory", "pulseaudio", "network", "idle_inhibitor", "tray", "battery", "clock" ],
     "sway/mode": {
         "format": " {}"
@@ -14,10 +14,8 @@
         "disable-scroll": false
     },
     "sway/window": {
-        "format":"",
         "max-length": 45,
-        "tooltip": false,
-        "all-outputs": true
+        "tooltip": false
     },
     "tray": {
         "icon-size": 20,

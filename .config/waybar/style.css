@@ -27,19 +27,46 @@
     font-size:     17px;
     box-shadow:    none;
     text-shadow:   none;
-    transition-duration: 0.3s;
+    transition-duration: .2s;
 }
 
-window {
-    color:      rgba(217, 216, 216, 1);
-    background: rgba(35, 31, 32, 0.7);
+window#waybar {
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(0, 0, 0, 0);
+  transition-duration: .4s;
+}
+
+window#waybar.empty {
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(35, 31, 32, 0.0);
 }
 
 window#waybar.solo {
-    color:      rgba(217, 216, 216, 1);
-    background: rgba(35, 31, 32, 0.9);
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(35, 31, 32, .5);
 }
 
+window#waybar.kitty {
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(44, 44, 55, .8);
+}
+
+window#waybar.chromium, window#waybar.Navigator, window#waybar.spotify {
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(0, 0, 0, 1);
+}
+
+window#waybar.Navigator ~ #custom-spotify_py {
+  border: 10px solid;
+  border-color: rgba(255, 255, 255,1);
+}
+
+window#waybar.Mail {
+  color:      rgba(217, 216, 216, 1);
+  background: rgba(28, 27, 34, 1);
+}
+
+/* module style start */
 #workspaces {
     margin: 0 5px;
 }
@@ -75,13 +102,18 @@ window#waybar.solo {
     /*min-width:  25px;*/
 }
 
-#custom-spotify_py{
-    padding: 2px 6px 0px 6px;
-    border-radius:5px;
-    margin:     1px 1px;
-    color:      rgba(35, 31, 32, 0.9);
-    background: rgba(217, 216, 216, 1);
-    font-family: monospace;
+#custom-spotify_py {
+    padding: 0px 6px 0px 6px;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px 0px 0px 0px;
+    color: rgba(217, 216, 216, 1);
+    background:      rgba(0, 0, 0, 1);
+    font-family: "Erbos Draco 1st Open NBP";
+    font-size:     13px;
+    border-left: .2px solid;
+    border-right: .2px solid;
+    border-bottom: .2px solid;
+    border-color: rgba(255, 255, 255,1);
 }
 
 #battery.warning, 

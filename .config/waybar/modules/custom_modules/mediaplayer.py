@@ -20,7 +20,7 @@ show_len = 20
 show_text = ''
 g_player = None
 isplaying = None
-stop_output = True
+stop_output = False
 def output_text():
     global show_index, show_len, show_text, g_player, stop_output
     icons = ['', '', '', '']
@@ -28,7 +28,7 @@ def output_text():
     while True:
         text = ''
 
-        if stop_output or not g_player:
+        if stop_output or not g_player or not show_text:
             time.sleep(5)
             continue
 
@@ -46,7 +46,7 @@ def output_text():
         show_index += 1
 
         if not isplaying:
-            text += '  '
+            text += ' '
         else:
             icons_index = 0
             if show_index <= len(icons):
@@ -73,6 +73,8 @@ def write_output(text, player):
 
 
 def on_play(player, status, manager):
+    global stop_output
+    stop_output = False
     logger.info('Received new playback status')
     on_metadata(player, player.props.metadata, manager)
 
