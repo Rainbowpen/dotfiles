@@ -5,13 +5,58 @@ require'nvim-tree'.setup {
   hijack_netrw        = true,
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
-  auto_close          = false,
   open_on_tab         = false,
   hijack_cursor       = false,
   update_cwd          = false,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
+  },
+  respect_buf_cwd = true,
+  create_in_closed_folder = false,
+  renderer = {
+    indent_markers = {
+      enable = true,
+    },
+    add_trailing = true,
+    highlight_opened_files = 'icon',
+    highlight_git = true,
+    root_folder_modifier = ":~",
+    special_files = {'README.md', 'Makefile', 'MAKEFILE'},
+    group_empty = true,
+    icons = {
+      symlink_arrow = ' >> ',
+      padding = ' ',
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+        folder_arrow = true,
+      },
+      glyphs = {
+        default = '',
+        symlink = '',
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌"
+        },
+        folder = {
+          arrow_open = "",
+          arrow_closed = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+      }
+    }
   },
   diagnostics = {
     enable = false,
@@ -57,5 +102,17 @@ require'nvim-tree'.setup {
   trash = {
     cmd = "trash",
     require_confirm = true
-  }
+  },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+      window_picker = {
+        enable = true,
+        exclude = {
+          filetype = {"notify", "packer", "qf"},
+          buftype = {"terminal"},
+        },
+      },
+    },
+  },
 }
