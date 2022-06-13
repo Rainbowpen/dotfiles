@@ -11,3 +11,6 @@ augroup dracula_customization
 	autocmd ColorScheme dracula hi NonText     guifg=#7b7b94
 	autocmd ColorScheme dracula hi CursorLine cterm=underline term=underline
 augroup END
+
+
+

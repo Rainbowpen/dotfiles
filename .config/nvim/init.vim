@@ -11,9 +11,8 @@ set viminfo+='1000,n~/.local/share/nvim/viminfo
 
 call plug#begin('~/.local/share/nvim/plugged')
     " Plug 'ycm-core/YouCompleteMe'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'scrooloose/syntastic'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
     "Plug 'ryanoasis/vim-devicons' " vimscript
 	Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
@@ -21,7 +20,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'akinsho/bufferline.nvim'
 	Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'scrooloose/syntastic'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'rust-lang/rust.vim'
+    Plug 'yuezk/vim-js' " A Vim syntax highlighting plugin for JavaScript and Flow.js
+    Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+    Plug 'junegunn/fzf.vim' " needed for previews
 call plug#end()
 
 filetype plugin indent on    " required
