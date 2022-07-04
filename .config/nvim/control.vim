@@ -24,7 +24,8 @@ nnoremap <space> za
 
 " map keys for coc-fzf list
 " mappings
-nnoremap <silent> <space><space> :<C-u>Rg<CR>
-nnoremap <silent> <space>b       :<C-u>Buffers<CR>
+nnoremap <silent> <space><space> :<C-u>Buffers<CR>
+nnoremap <silent> <space>r       :<C-u>Rg<CR>
 nnoremap <silent> <space>f       :<C-u>Files<CR>
 nnoremap <silent> <space>l       :<C-u>Lines<CR>
+nnoremap <silent> <space>t       :<C-u>Tags<CR>

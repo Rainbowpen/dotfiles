@@ -43,3 +43,17 @@ set cursorline      "突出顯示當前行"
 set cursorcolumn        "突出顯示當前列"
 set clipboard=unnamedplus " Enable clipboard
 
+
+" folding
+"
+function! MyFoldText()
+    let line = getline(v:foldstart)
+    let folded_line_num = v:foldend - v:foldstart
+    let line_text = substitute(line, '^"{\+', '', 'g')
+    let fillcharcount = 67 - len(line_text) - len(folded_line_num)
+    return '+'. repeat('-', 2) . '  ' . line_text . '  ' . repeat('-', fillcharcount) . ' (' . folded_line_num . ' L)'
+endfunction
+
+set foldmethod=indent
+set foldtext=MyFoldText()
+set fillchars=fold:\ 

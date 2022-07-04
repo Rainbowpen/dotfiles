@@ -26,6 +26,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'yuezk/vim-js' " A Vim syntax highlighting plugin for JavaScript and Flow.js
     Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
     Plug 'junegunn/fzf.vim' " needed for previews
+    Plug 'tmhedberg/SimpylFold' " python fold with style
 call plug#end()
 
 filetype plugin indent on    " required
@@ -33,17 +34,10 @@ filetype plugin indent on    " required
 " --- include lua config
 lua require('config')
 
-
-" ---THEME---
-source $HOME/.config/nvim/dracula.vim
-lua require("top-bufferline") 
-
-
 " ---FONTS---
 set encoding=utf-8
 "設置字體"
 set guifont="Fira Code Retina":h13 "Monaco:h13         
-
 
 " ---EDIT style---
 source $HOME/.config/nvim/editstyle.vim
@@ -77,8 +71,12 @@ lua require('indent-blankline-conf')
 " colorizer
 lua require('colorizer-conf')
 
+
 " ---Control---
 source $HOME/.config/nvim/control.vim
 
 
+" ---THEME---
+source $HOME/.config/nvim/dracula.vim
+lua require("top-bufferline") 
 
