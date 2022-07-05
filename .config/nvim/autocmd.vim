@@ -21,28 +21,25 @@ augroup END
 set shiftwidth=4  
 
 "" save and run it
-autocmd FileType python map <buffer> <F9> :w<CR>:sv<BAR>term python3 %<CR>
+autocmd FileType python map <buffer> <F9> :w<CR>:TermExec cmd="python3 %"<CR>
 
 "" disable coc_suggest_ in python file
 autocmd FileType python let b:coc_suggest_disable = 1
 
 
 
-
 " octave
 "" save and run
-autocmd FileType matlab map <buffer> <F9> :w<CR>:sv<BAR>term octave %<CR>
+autocmd FileType matlab map <buffer> <F9> :w<CR>:TermExec cmd="octave %"<CR>
 
 "" save and debug
-autocmd FileType matlab map <buffer> <F10> :w<CR>:sv<BAR>term octave --persist %<CR>
-
+autocmd FileType matlab map <buffer> <F9> :w<CR>:TermExec cmd="octave %"<CR>
 
 
 
 " rust
 "" cargo run for rust
-autocmd FileType rust map <buffer> <F9> :w<CR>:sv<BAR>term cargo run<CR>
-
+autocmd FileType rust map <buffer> <F9> :w<CR>:TermExec cmd="cargo run"<CR>
 
 
 
@@ -54,4 +51,8 @@ set shiftwidth=2
 autocmd FileType javascript let b:coc_suggest_disable = 1
 
 "" run js via node
-autocmd FileType javascript map <buffer> <F9> :w<CR>:sv<BAR>term node %<CR>
+autocmd FileType javascript map <buffer> <F9> :w<CR>:TermExec cmd="node %"<CR>
+
+
+
+
