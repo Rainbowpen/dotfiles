@@ -10,11 +10,9 @@ filetype off                  " required
 set viminfo+='1000,n~/.local/share/nvim/viminfo
 
 call plug#begin('~/.local/share/nvim/plugged')
-    " Plug 'ycm-core/YouCompleteMe'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
     Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-    "Plug 'ryanoasis/vim-devicons' " vimscript
 	Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 	Plug 'kyazdani42/nvim-tree.lua'
 	Plug 'akinsho/bufferline.nvim'
@@ -27,6 +25,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
     Plug 'junegunn/fzf.vim' " needed for previews
     Plug 'tmhedberg/SimpylFold' " python fold with style
+    Plug 'akinsho/toggleterm.nvim', {'tag' : 'v1.*'}
 call plug#end()
 
 filetype plugin indent on    " required
@@ -36,8 +35,7 @@ lua require('config')
 
 " ---FONTS---
 set encoding=utf-8
-"設置字體"
-set guifont="Fira Code Retina":h13 "Monaco:h13         
+set guifont="Fira Code Retina":h13 " set font for gui version's neovim
 
 " ---EDIT style---
 source $HOME/.config/nvim/editstyle.vim
@@ -45,12 +43,12 @@ source $HOME/.config/nvim/editstyle.vim
 " galaxyline
 lua require('galaxyline/statusline')
 
+" toggleterm
+lua require('toggleterm-conf')
+
 " nvim-tree
 source $HOME/.config/nvim/nvim-tree.vim
 lua require('nvim-tree-conf')
-
-" YCM
-" source $HOME/.config/nvim/ycm.vim
 
 " Kite
 source $HOME/.config/nvim/kite.vim
@@ -65,7 +63,6 @@ source $HOME/.config/nvim/autocmd.vim
 source $HOME/.config/nvim/syntastic.vim
 
 " indent-blankline
-" source $HOME/.config/nvim/indentBlankline.vim
 lua require('indent-blankline-conf')
 
 " colorizer
