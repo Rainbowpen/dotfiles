@@ -11,10 +11,9 @@
 " auto folding
 augroup remember_folds
   autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
+  autocmd BufWinLeave *.py,*.rs,*.js,*.c,*.cpp mkview 
+  autocmd BufWinEnter * silent! loadview 
 augroup END
-
 
 " python3
 "" google js style tab
