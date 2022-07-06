@@ -20,8 +20,18 @@ augroup END
 "" google js style tab
 set shiftwidth=4  
 
+
 "" save and run it
-autocmd FileType python map <buffer> <F9> :w<CR>:TermExec cmd="python3 %"<CR>
+function Run_python ()
+  if isdirectory('.venv')   
+    let run_cmd = '"poetry run python3 ' . @% . '"'
+  else
+    let run_cmd = '"python3 ' . @% . '"'
+  endif
+  execute ':TermExec cmd=' . run_cmd
+endfunction
+
+autocmd FileType python map <buffer> <F9> :w<CR>:call Run_python()<CR>
 
 "" disable coc_suggest_ in python file
 autocmd FileType python let b:coc_suggest_disable = 1
@@ -33,7 +43,7 @@ autocmd FileType python let b:coc_suggest_disable = 1
 autocmd FileType matlab map <buffer> <F9> :w<CR>:TermExec cmd="octave %"<CR>
 
 "" save and debug
-autocmd FileType matlab map <buffer> <F9> :w<CR>:TermExec cmd="octave %"<CR>
+autocmd FileType matlab map <buffer> <F10> :w<CR>:TermExec cmd="octave --persist %"<CR>
 
 
 
