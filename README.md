@@ -1,4 +1,5 @@
-# quick-dotfile
+# dotfiles
+### Just some dotfile that useful for everytime I need to setup new machine.
 
 ## How to use it
 
