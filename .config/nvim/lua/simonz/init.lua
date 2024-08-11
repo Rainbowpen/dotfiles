@@ -1,0 +1,5 @@
+require("simonz.lazy_init")
+require("simonz.set")
+require("simonz.cmd")
+require("simonz.remap")
+require("simonz.plugin")
