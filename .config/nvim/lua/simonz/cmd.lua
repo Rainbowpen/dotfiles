@@ -110,9 +110,18 @@ vim.cmd [[
     "
     "let g:rightclick_select_items =  ['save' , 'quit' , 'undo' , 'redo' , 'paste']
     "let g:rightclick_select_macros = [':w^M' , ':q^M' , 'u'    , '^R'   , 'p'    ]
-
-
-
-
-
 ]]
+
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'VimLeavePre' }, {
+	callback = function(event)
+		if vim.api.nvim_buf_get_option(event.buf, 'modified') then
+			vim.schedule(function()
+				vim.api.nvim_buf_call(event.buf, function()
+					vim.cmd 'silent! write'
+				end)
+			end)
+		end
+	end,
+})
+
+

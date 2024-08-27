@@ -12,8 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
-end
-vim.opt.rtp:prepend(lazypath)
+end vim.opt.rtp:prepend(lazypath)
 
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
@@ -40,9 +39,9 @@ require("lazy").setup({
         "lukas-reineke/indent-blankline.nvim",
         "norcalli/nvim-colorizer.lua",
         "scrooloose/syntastic",
-        "neoclide/coc.nvim",
-            branch = "master",
-            build = "yarn install --frozen-lockfile",
+        --"neoclide/coc.nvim",
+        --    branch = "master",
+        --    build = "npm ci",
         "junegunn/fzf", 
             dir = {
               "~/.fzf"
@@ -50,6 +49,11 @@ require("lazy").setup({
         "junegunn/fzf.vim",
         "tmhedberg/SimpylFold",
         "akinsho/toggleterm.nvim",
+        "rust-lang/rust.vim",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+        require 'simonz.plugin_config.cmp'
     },
 })
 

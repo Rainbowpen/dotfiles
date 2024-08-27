@@ -1,5 +1,5 @@
 -- galaxyline
-require("simonz.plugin_config.galaxyline.statusline")
+require("simonz.plugin_config.galaxyline.tokyo")
 
 -- toggleterm
 require("simonz.plugin_config.toggleterm-conf")
@@ -14,11 +14,18 @@ require("simonz.plugin_config.indent-blankline-conf")
 require("simonz.plugin_config.colorizer-conf")
 
 -- ---THEME---
-require("simonz.plugin_config.top-bufferline") 
+require("simonz.plugin_config.top-bufferline")
 
 -- coc-nvim
-require("simonz.plugin_config.coc") 
+--require("simonz.plugin_config.coc") 
 
 -- nvim-treeitter
-require("simonz.plugin_config.nvim-treesitter-conf") 
+require("simonz.plugin_config.nvim-treesitter-conf")
+
+-- mason
+require("simonz.plugin_config.mason-conf")
+require("simonz.plugin_config.mason-lspconf")
+
+-- nvim-cmp
+require("simonz.plugin_config.cmp")
 
