@@ -10,6 +10,7 @@ vim.opt.scrolloff = 8
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
@@ -29,5 +30,7 @@ vim.opt.updatetime = 50
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
 vim.opt.modifiable = true
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = { "en_us" }
+
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

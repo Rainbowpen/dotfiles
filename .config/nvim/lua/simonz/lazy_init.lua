@@ -38,7 +38,7 @@ require("lazy").setup({
         "akinsho/bufferline.nvim",
         "lukas-reineke/indent-blankline.nvim",
         "norcalli/nvim-colorizer.lua",
-        "scrooloose/syntastic",
+        --"scrooloose/syntastic",
         --"neoclide/coc.nvim",
         --    branch = "master",
         --    build = "npm ci",
@@ -53,8 +53,14 @@ require("lazy").setup({
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
-        require 'simonz.plugin_config.cmp'
+        require 'simonz.plugin_config.cmp',
+        "christoomey/vim-tmux-navigator",
+            event = VeryLazy,
+        'rmagatti/auto-session',
+            lazy = false,
+        "folke/trouble.nvim",
+            cmd = "Trouble"
     },
 })
 
-  
+

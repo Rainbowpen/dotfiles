@@ -29,3 +29,9 @@ require("simonz.plugin_config.mason-lspconf")
 -- nvim-cmp
 require("simonz.plugin_config.cmp")
 
+-- auto-restore
+require("simonz.plugin_config.auto-restore")
+
+-- Troble-nvim
+require("simonz.plugin_config.trouble-nvim")
+

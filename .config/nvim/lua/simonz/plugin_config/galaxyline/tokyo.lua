@@ -193,6 +193,14 @@ gls.left[10] = {
     }
 }
 
+gls.left[11] = {
+    DiagnosticHint = {
+        provider = "DiagnosticHint",
+        icon = "  ",
+        highlight = {colors.blue, colors.bg}
+    }
+}
+
 gls.right[1] = {
     lsp_status = {
         provider = function(msg)
