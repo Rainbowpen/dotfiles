@@ -35,3 +35,6 @@ require("simonz.plugin_config.auto-restore")
 -- Troble-nvim
 require("simonz.plugin_config.trouble-nvim")
 
+-- formatter
+require("simonz.plugin_config.formatter")
+

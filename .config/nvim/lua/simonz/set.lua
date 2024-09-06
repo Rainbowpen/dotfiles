@@ -15,17 +15,15 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.tabstop=4
+vim.opt.tabstop = 4
 
 vim.opt.autoread = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
-
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
-
 
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevel = 99
@@ -33,4 +31,4 @@ vim.opt.modifiable = true
 vim.opt.spell = false
 vim.opt.spelllang = { "en_us" }
 
-vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

@@ -59,7 +59,8 @@ require("lazy").setup({
         'rmagatti/auto-session',
             lazy = false,
         "folke/trouble.nvim",
-            cmd = "Trouble"
+            cmd = "Trouble",
+        "mhartington/formatter.nvim"
     },
 })
 
