@@ -11,7 +11,7 @@ alias df="df -h"
 alias vim="nvim"
 alias speedtest="~/.local/bin/scripts/speed_test.py"
 alias sonyt="~/.local/bin/scripts/sonyt.sh"
-alias cat="bat --theme=OneHalfDark"
+#alias cat="bat --theme=OneHalfDark"
 alias lg="lazygit"
 alias trans="trans :zh-TW -speak -d -show-prompt-message n \
              -show-translation-phonetics n -j"
@@ -24,12 +24,10 @@ function pj
     [ -f "{}/README.md" ] && bat --theme=OneHalfDark -p \
     --color=always {}/README.md" \
     )
-    cd $project_path && vim .
-  end 
+    cd $project_path && vim
+  end
 end
 
-## thefuck alias
-thefuck --alias | source 
 
 alias ls="exa --icons"
 alias ll="exa --icons -alh"
@@ -78,5 +76,3 @@ alias push='git push origin'
 alias gstatus='git status'
 alias tag='git tag'
 alias newtag='git tag -a'
-
-
