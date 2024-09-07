@@ -33,6 +33,10 @@ require("formatter").setup({
 			require("formatter.filetypes.yaml").yamlfmt,
 		},
 
+		["yaml.ansible"] = {
+			require("formatter.filetypes.yaml").yamlfmt,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {

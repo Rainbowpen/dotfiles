@@ -43,7 +43,7 @@ vim.cmd([[
     "" save and run it
     function Run_rust ()
         if filereadable('./Cargo.toml')
-          let run_cmd = 'cargo run'
+          let run_cmd = '"cargo run"'
         else
           let run_cmd = '"rust-script ' . @% . '"'
         endif
@@ -114,7 +114,9 @@ vim.cmd([[
     "
     "let g:rightclick_select_items =  ['save' , 'quit' , 'undo' , 'redo' , 'paste']
     "let g:rightclick_select_macros = [':w^M' , ':q^M' , 'u'    , '^R'   , 'p'    ]
-]])
+
+
+    ]])
 
 -- auto save after awhile.
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
