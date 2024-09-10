@@ -29,8 +29,8 @@ function pj
 end
 
 
-alias ls="exa --icons"
-alias ll="exa --icons -alh"
+alias ls="eza --icons"
+alias ll="eza --icons -alh"
 #if [ "$XDG_SESSION_TYPE" = "tty" ]
 #	# in tty
 #	alias ll="ls -alh"
@@ -76,3 +76,6 @@ alias push='git push origin'
 alias gstatus='git status'
 alias tag='git tag'
 alias newtag='git tag -a'
+
+
+zoxide init fish --cmd cd| source
