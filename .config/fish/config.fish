@@ -77,5 +77,7 @@ alias gstatus='git status'
 alias tag='git tag'
 alias newtag='git tag -a'
 
+# Set up fzf key bindings
+fzf --fish | source
 
-zoxide init fish --cmd cd| source
+zoxide init fish --cmd cd | source
