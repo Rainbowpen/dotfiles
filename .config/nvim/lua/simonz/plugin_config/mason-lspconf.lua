@@ -4,7 +4,6 @@ require("mason-lspconfig").setup({
 		"harper_ls",
 		"lua_ls",
 		"pyright",
-		"biome",
 		"rust_analyzer",
 		"pyright",
 		"yamlls",
@@ -21,7 +20,36 @@ require("mason-lspconfig").setup_handlers({
 	end,
 })
 
-require("lspconfig").rust_analyzer.setup({})
+require("lspconfig").rust_analyzer.setup({
+	settings = {
+		diagnostics = {
+			enable = true,
+		},
+		["rust_analyzer"] = {
+			cargo = { allFeatures = true },
+		},
+	},
+	on_attach = function(client, bufnr)
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	end,
+	filetypes = { "rust" },
+})
+require("lspconfig").pyright.setup({
+	python = {
+		pythonPath = ".venv/bin/python",
+		venvPath = ".",
+		disableTaggedHints = false,
+		analysis = {
+			autoSearchPaths = true,
+			diagnosticMode = "openFilesOnly",
+			useLibraryCodeForTypes = true,
+			autoImportCompletions = true,
+		},
+	},
+	on_attach = function(client, bufnr)
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	end,
+})
 require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {

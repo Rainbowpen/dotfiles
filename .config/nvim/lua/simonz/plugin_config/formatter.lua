@@ -33,6 +33,10 @@ require("formatter").setup({
 			require("formatter.filetypes.yaml").yamlfmt,
 		},
 
+		rust = {
+			require("formatter.filetypes.rust").rustfmt,
+		},
+
 		["yaml.ansible"] = {
 			require("formatter.filetypes.yaml").yamlfmt,
 		},

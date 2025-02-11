@@ -10,7 +10,7 @@ vim.opt.scrolloff = 8
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
-vim.opt.clipboard = "unnamedplus"
+---vim.opt.clipboard = "unnamedplus"
 
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
@@ -30,7 +30,7 @@ vim.opt.foldlevel = 99
 vim.opt.modifiable = true
 vim.opt.spell = false
 vim.opt.spelllang = { "en_us" }
-
+vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 vim.filetype.add({

@@ -17,11 +17,11 @@ local colors = {
 	--purple = '#c678dd',
 	--orange = '#e5c07b'
 
-	bg = "#222436",
-	bg_dark = "#1e2030",
-	bg_highlight = "#2f334d",
-	lightbg = "#2d3139",
-	lightbg2 = "#262a32",
+	bg = "#c8d3f5",
+	bg_dark = "#82aaff",
+	bg_highlight = "#fff",
+	lightbg = "#65bcff",
+	lightbg2 = "#b4f9f8",
 	blue = "#82aaff",
 	blue0 = "#3e68d7",
 	blue1 = "#65bcff",
@@ -33,7 +33,7 @@ local colors = {
 	cyan = "#86e1fc",
 	dark3 = "#545c7e",
 	dark5 = "#737aa2",
-	fg = "#c8d3f5",
+	fg = "#737aa2",
 	fg_dark = "#828bb8",
 	fg_gutter = "#3b4261",
 	green = "#c3e88d",
@@ -154,7 +154,7 @@ gls.left[6] = {
 		provider = "DiffAdd",
 		condition = condition.hide_in_width,
 		icon = "  ",
-		highlight = { colors.grey, colors.bg },
+		highlight = { colors.fg, colors.bg },
 	},
 }
 
@@ -162,7 +162,7 @@ gls.left[7] = {
 	DiffModified = {
 		provider = "DiffModified",
 		condition = condition.hide_in_width,
-		icon = "  ",
+		icon = "   ",
 		highlight = { colors.grey, colors.bg },
 	},
 }
@@ -172,11 +172,10 @@ gls.left[8] = {
 		provider = "DiffRemove",
 		condition = condition.hide_in_width,
 		icon = "  ",
-		separator = "",
 		highlight = { colors.grey, colors.bg },
-		separator_highlight = { colors.lightbg2, colors.bg },
 	},
 }
+
 gls.left[9] = {
 	DiagnosticError = {
 		provider = "DiagnosticError",
