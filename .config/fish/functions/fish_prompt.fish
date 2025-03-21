@@ -1,5 +1,4 @@
 function fish_prompt
-    set -l __last_command_exit_status $status
 
     if not set -q -g __fish_robbyrussell_functions_defined
         set -g __fish_robbyrussell_functions_defined
@@ -62,13 +61,22 @@ function fish_prompt
     set -l normal (set_color normal)
 
     set -l arrow_color "$red"
-    if test $__last_command_exit_status != 0
-        set arrow_color "$red"
+
+	# vi mode indicator
+    switch $fish_bind_mode
+        case default
+            set arrow_color "$yellow"
+        case insert
+            set arrow_color "$red"
+        case replace_one
+            set arrow_color "$green"
+        case visual
+            set arrow_color "$green"
+        case '*'
+            set arrow_color "$cyan"
     end
-	
-	#➜
-    
-	set -l arrow "$arrow_color "
+
+    set -l arrow "$arrow_color "
     if test "$USER" = 'root'
         set arrow "$arrow_color# "
     end
@@ -85,7 +93,7 @@ function fish_prompt
             set repo_info "$repo_info$dirty"
         end
     end
-	
+
 	if test -n "$SSH_TTY"
 		# Main ssh
 		echo -n (set_color brwhite)' ['(set_color green)$USER(set_color brwhite)'@'(set_color purple)(prompt_hostname)':'(set_color blue)(prompt_pwd)(set_color brwhite)']'(set_color red)'$ '
