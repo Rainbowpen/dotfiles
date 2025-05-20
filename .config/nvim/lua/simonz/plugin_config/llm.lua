@@ -20,7 +20,8 @@ return {
 			cmd_env = { LLM_LOG_LEVEL = "DEBUG" },
 		},
 
-		url = "http://10.0.0.124:11434", -- llm-ls uses "/api/generate"
+		-- url = "http://10.0.0.124:11434", -- llm-ls uses "/api/generate"
+		url = "http://10.0.0.117:11434", -- llm-ls uses "/api/generate"
 		backend = "ollama",
 		-- model = "codellama:7b-code",
 		model = "qwen2.5-coder:7b-base",
@@ -39,7 +40,7 @@ return {
 			suffix = " <|fim_suffix|>",
 		},
 		enable_suggestions_on_startup = true,
-		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
 		accept_keymap = "<c-j>",
 		dismiss_keymap = "<S-Tab>",
 		debounce_ms = 150,

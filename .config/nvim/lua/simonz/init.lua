@@ -1,5 +1,5 @@
 require("simonz.set")
 require("simonz.lazy_init")
 require("simonz.remap")
-require("simonz.plugin")
+--require("simonz.plugin")
 require("simonz.cmd")

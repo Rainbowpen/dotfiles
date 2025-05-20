@@ -3,17 +3,17 @@ vim.cmd([[
 
     autocmd FileType * map <buffer> <F9> :w<CR>:RunCode<CR>
 
-    " rust
-    "" save and run it
-    function Run_rust ()
-        if filereadable('./Cargo.toml')
-          let run_cmd = '"cargo run"'
-        else
-          let run_cmd = '"rust-script ' . @% . '"'
-        endif
-        execute ':TermExec cmd=' . run_cmd
-    endfunction
-    ""autocmd FileType rust map <buffer> <F9> :w<CR>:call Run_rust()<CR>
+    "" rust
+    """ save and run it
+    "function Run_rust ()
+    "    if filereadable('./Cargo.toml')
+    "      let run_cmd = '"cargo run"'
+    "    else
+    "      let run_cmd = '"rust-script ' . @% . '"'
+    "    endif
+    "    execute ':TermExec cmd=' . run_cmd
+    "endfunction
+    """autocmd FileType rust map <buffer> <F9> :w<CR>:call Run_rust()<CR>
 
 
     " javascript

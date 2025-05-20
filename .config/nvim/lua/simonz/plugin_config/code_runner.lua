@@ -1,7 +1,7 @@
 return {
 	"CRAG666/code_runner.nvim",
 	dependencies = { "preservim/vimux" },
-	config = {
+	opts = {
 		mode = "vimux",
 		filetype = {
 			java = {
