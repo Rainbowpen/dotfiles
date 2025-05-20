@@ -85,7 +85,7 @@ alias ll="eza --icons -alh"
 
 # Attach tmux session if is using ghostty and none of tmux session has
 # been attached.
-if test $TERM = "xterm-ghostty"; and not test (tmux list-clients)
+if test $TERM = "xterm-ghostty"; and not test $TERM_PROGRAM = "tmux"; and not test (tmux list-clients)
         .local/bin/scripts/fix_tmux_resurrect-files.sh
         tmux att || tmux
 end
