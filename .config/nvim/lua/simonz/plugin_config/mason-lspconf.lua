@@ -18,17 +18,7 @@ return {
 			},
 			automatic_installation = true,
 		})
-
-		--require("mason-lspconfig").setup_handlers({
-		--	-- The first entry (without a key) will be the default handler
-		--	-- and will be called for each installed server that doesn't have
-		--	-- a dedicated handler.
-		--	function(server_name) -- Default handler (optional)
-		--		require("lspconfig")[server_name].setup({})
-		--	end,
-		--})
-
-		require("lspconfig").rust_analyzer.setup({
+		vim.lsp.config("rust_analyzer", {
 			settings = {
 				diagnostics = {
 					enable = true,
@@ -38,11 +28,11 @@ return {
 				},
 			},
 			on_attach = function(client, bufnr)
-				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end,
 			filetypes = { "rust" },
 		})
-		require("lspconfig").pyright.setup({
+		vim.lsp.config("pyright", {
 			python = {
 				pythonPath = ".venv/bin/python",
 				venvPath = ".",
@@ -58,7 +48,7 @@ return {
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end,
 		})
-		require("lspconfig").lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -69,7 +59,7 @@ return {
 			},
 		})
 
-		require("lspconfig").harper_ls.setup({
+		vim.lsp.config("harper_ls", {
 			settings = {
 				["harper-ls"] = {
 					userDictPath = "~/.local/share/harper-ls/dictionary.dict",
@@ -94,7 +84,7 @@ return {
 			},
 		})
 
-		require("lspconfig").ansiblels.setup({
+		vim.lsp.config("ansiblels", {
 			cmd = { "ansible-language-server", "--stdio" },
 			filetypes = { "yaml.ansible" },
 			settings = {
