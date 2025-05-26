@@ -1,0 +1,4 @@
+! option   = symbols
+  fun-time:code  = +fun-time(code)
+
+! include %S/evdev
