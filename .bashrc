@@ -72,10 +72,10 @@ ex ()
   fi
 }
 
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+PATH=$PATH:~/.local/bin:~/.cargo/bin
 
 
-alias ..='cd ..' 
+alias ..='cd ..'
 alias cp='cp -i'
 alias ls='ls --color=auto'
 alias ll='ls -al'
@@ -83,4 +83,3 @@ alias ll='ls -al'
 
 # start fish shell
 exec -l fish "$@"
-
