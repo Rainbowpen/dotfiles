@@ -8,6 +8,6 @@ then
          -H "Title: SSH logined" \
 	     -H "Priority: urgent" \
 	     -H "Tags: warning,skull" \
-	     -d "💻️ $(hostname) has been logined by $(whoami) at $(date) via SSH!!!"
-         ntfy.hoohoo.dedyn.io/homelab &
+	     -d "💻️ $(hostname) has been logined by $(whoami) at $(date) via SSH!!!" \
+         https://ntfy.hoohoo.dedyn.io/homelab
 fi
