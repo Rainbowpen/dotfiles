@@ -3,6 +3,9 @@ set fish_greeting
 ## keybind
 bind \ee '' ## overwriting default keybind to nothing
 
+## add path
+fish_add_path ~/.local/bin ~/.cargo/bin
+
 alias ..="cd .."
 alias cp="cp -i"
 alias rmi="rm -i"
