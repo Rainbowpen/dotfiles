@@ -1,19 +1,21 @@
 set fish_greeting
 
-
 ## keybind
 bind \ee '' ## overwriting default keybind to nothing
 
 alias ..="cd .."
 alias cp="cp -i"
 alias rmi="rm -i"
-alias df="df -h"
+alias cpr='rsync -avhP' # rsync-based cp with progress
+alias mvr='rsync -avhP --remove-source-files' # rsync-based mv with progress
+# alias df="df -h"
+alias df="dysk"
 alias vim="nvim"
 alias vi="nvim"
 alias vimm="nvim"
 alias ai="aichat"
 alias speedtest="~/.local/bin/scripts/speed_test.py"
-#alias sonyt="~/.local/bin/scripts/sonyt.sh"
+alias sonyt="~/.local/bin/scripts/sonyt.sh"
 #alias cat="bat --theme=OneHalfDark"
 alias lg="lazygit"
 alias trans="trans :zh-TW -speak -d -show-prompt-message n \
@@ -37,14 +39,6 @@ end
 
 alias ls="eza --icons"
 alias ll="eza --icons -alh"
-#if [ "$XDG_SESSION_TYPE" = "tty" ]
-#	# in tty
-#	alias ll="ls -alh"
-#else
-#	# in wayland or something else
-#	alias ls="logo-ls"
-#	alias ll="logo-ls -alh -T ANSIC"
-#end
 
 # mount sshfs
 ##lab
