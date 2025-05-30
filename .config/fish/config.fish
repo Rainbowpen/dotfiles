@@ -6,6 +6,9 @@ bind \ee '' ## overwriting default keybind to nothing
 ## add path
 fish_add_path ~/.local/bin ~/.cargo/bin
 
+## ssh login notification.
+~/.local/bin/scripts/ssh_notify.sh
+
 alias ..="cd .."
 alias cp="cp -i"
 alias rmi="rm -i"
@@ -23,6 +26,8 @@ alias sonyt="~/.local/bin/scripts/sonyt.sh"
 alias lg="lazygit"
 alias trans="trans :zh-TW -speak -d -show-prompt-message n \
              -show-translation-phonetics n -j"
+alias ls="eza --icons"
+alias ll="eza --icons -alh"
 set -Ux MANPAGER 'nvim +Man!'
 
 function pj
@@ -40,8 +45,6 @@ end
 
 
 
-alias ls="eza --icons"
-alias ll="eza --icons -alh"
 
 # mount sshfs
 ##lab
