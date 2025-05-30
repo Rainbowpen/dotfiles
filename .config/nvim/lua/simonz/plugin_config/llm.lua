@@ -24,7 +24,8 @@ return {
 		url = "http://10.0.0.117:11434", -- llm-ls uses "/api/generate"
 		backend = "ollama",
 		-- model = "codellama:7b-code",
-		model = "qwen2.5-coder:7b-base",
+		-- model = "qwen2.5-coder:7b-base",
+		model = "qwen2.5-coder:3b-base",
 		tokens_to_clear = { "<EOT>" },
 		context_window = 4096,
 		-- fim = {
@@ -40,7 +41,7 @@ return {
 			suffix = " <|fim_suffix|>",
 		},
 		enable_suggestions_on_startup = true,
-		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible", "*.fish" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
 		accept_keymap = "<c-j>",
 		dismiss_keymap = "<S-Tab>",
 		debounce_ms = 150,

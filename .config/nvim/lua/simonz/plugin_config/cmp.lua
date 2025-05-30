@@ -15,7 +15,8 @@ return {
 		"lukas-reineke/cmp-under-comparator",
 		"mtoohey31/cmp-fish",
 	},
-	config = function()
+
+	opts = function()
 		local kind_icons = {
 			Text = "󰉿",
 			Method = "󰆧",
@@ -87,8 +88,8 @@ return {
 			matching = {
 				disallow_fuzzy_matching = true,
 				disallow_fullfuzzy_matching = true,
-				disallow_partial_fuzzy_matching = true,
-				disallow_partial_matching = false,
+				disallow_partial_fuzzy_matching = false,
+				disallow_partial_matching = true,
 				disallow_prefix_unmatching = true,
 			},
 			min_length = 0, -- allow for `from package import _` in Python
@@ -118,8 +119,10 @@ return {
 				end, { "i", "s" }),
 			}),
 			sources = {
+				{ name = "lazydev", max_item_count = 5 },
 				{ name = "luasnip", max_item_count = 5 },
 				{ name = "nvim_lsp", max_item_count = 20 },
+				{ name = "path", max_item_count = 5 },
 				{ name = "nvim_lua", max_item_count = 5 },
 				{ name = "buffer", max_item_count = 5, keyword_length = 3 },
 				{ name = "nvim_lsp_signature_help", max_item_count = 5 },

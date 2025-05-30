@@ -4,4 +4,5 @@ return {
 		"~/.fzf",
 	},
 	"junegunn/fzf.vim",
+	"tpope/vim-fugitive",
 }

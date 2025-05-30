@@ -1,6 +1,6 @@
 vim.cmd([[
-    colorscheme tokyonight-moon
-
+    colorscheme tokyonight-night
+    let g:tmux_navigator_no_mappings = 1
     autocmd FileType * map <buffer> <F9> :w<CR>:RunCode<CR>
 
     "" rust
@@ -48,7 +48,7 @@ vim.cmd([[
     endfunction
     ]])
 
--- auto save after awhile.
+-- Auto save after a while.
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
 	callback = function(event)
 		if vim.api.nvim_buf_get_option(event.buf, "modified") then
@@ -69,3 +69,6 @@ autocmd("BufWritePost", {
 	group = "__formatter__",
 	command = ":FormatWrite",
 })
+
+-- disable deprecate messages
+vim.deprecate = function() end
