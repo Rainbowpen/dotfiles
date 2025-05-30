@@ -6,8 +6,6 @@ bind \ee '' ## overwriting default keybind to nothing
 ## add path
 fish_add_path ~/.local/bin ~/.cargo/bin
 
-## ssh login notification.
-~/.local/bin/scripts/ssh_notify.sh
 
 alias ..="cd .."
 alias cp="cp -i"
@@ -86,8 +84,10 @@ end
 # Attach tmux session if is using ghostty and none of tmux session has
 # been attached.
 if test $TERM = "xterm-ghostty"; and not test $TERM_PROGRAM = "tmux"; and not test (tmux list-clients)
-        .local/bin/scripts/fix_tmux_resurrect-files.sh
-        tmux att || tmux
+    ## ssh login notification.
+    ~/.local/bin/scripts/ssh_notify.sh
+    .local/bin/scripts/fix_tmux_resurrect-files.sh
+    tmux att || tmux
 end
 
 # Set up fzf key bindings
