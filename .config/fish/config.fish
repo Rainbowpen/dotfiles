@@ -1,3 +1,14 @@
+# send ssh login notification.
+if test "$SSH_CLIENT"; and not test "$TERM_PROGRAM" = "tmux";
+    ## ssh login notification.
+    ~/.local/bin/scripts/ssh_notify.sh
+end
+
+# continue when is-interactive
+if not status --is-interactive
+    return
+end
+
 set fish_greeting
 
 ## keybind
@@ -18,28 +29,16 @@ alias vim="nvim"
 alias vi="nvim"
 alias vimm="nvim"
 alias ai="aichat"
-alias speedtest="~/.local/bin/scripts/speed_test.py"
-alias sonyt="~/.local/bin/scripts/sonyt.sh"
+alias ip="ip --color=auto"
+alias ipaddr="ip --color=auto -br addr"
 #alias cat="bat --theme=OneHalfDark"
 alias lg="lazygit"
+alias pj="switch_project"
 alias trans="trans :zh-TW -speak -d -show-prompt-message n \
              -show-translation-phonetics n -j"
 alias ls="eza --icons"
 alias ll="eza --icons -alh"
 set -Ux MANPAGER 'nvim +Man!'
-
-function pj
-  if set project_path $(find ~/Projects/* -maxdepth 0 -type d,l -print | \
-    fzf --ansi --preview="exa -a --icons --colour=always {}; \
-    echo "\n" \
-    tokei {}; \
-    echo "\n" \
-    [ -f "{}/README.md" ] && bat --theme=OneHalfDark -p \
-    --color=always {}/README.md" \
-    )
-    cd $project_path && yazi
-  end
-end
 
 
 
@@ -67,25 +66,10 @@ end
 #alias lab="sshpass -p (gpg -d -q ~/Documents/pw/lab_simon.gpg) ssh -o StrictHostKeyChecking=no lab"
 #alias labst="sshpass -p (gpg -d -q ~/Documents/pw/lab_stmanager.gpg) ssh -o StrictHostKeyChecking=no lab-st"
 
-# git
-#alias addup='git add -u'
-#alias addall='git add .'
-#alias branch='git branch'
-#alias checkout='git checkout'
-#alias clone='git clone'
-#alias commit='git commit -m'
-#alias fetch='git fetch'
-#alias pull='git pull origin'
-#alias push='git push origin'
-#alias gstatus='git status'
-#alias tag='git tag'
-#alias newtag='git tag -a'
 
 # Attach tmux session if is using ghostty and none of tmux session has
 # been attached.
-if test $TERM = "xterm-ghostty"; and not test $TERM_PROGRAM = "tmux"; and not test (tmux list-clients)
-    ## ssh login notification.
-    ~/.local/bin/scripts/ssh_notify.sh
+if test "$TERM" = "xterm-ghostty"; and not test "$TERM_PROGRAM" = "tmux"; and not test (tmux list-clients)
     .local/bin/scripts/fix_tmux_resurrect-files.sh
     tmux att || tmux
 end
