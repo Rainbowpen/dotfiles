@@ -41,8 +41,8 @@ return {
 			suffix = " <|fim_suffix|>",
 		},
 		enable_suggestions_on_startup = true,
-		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible", "*.fish" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
-		accept_keymap = "<c-j>",
+		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible", "*.fish", "*.ino" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+		accept_keymap = "<c-i>",
 		dismiss_keymap = "<S-Tab>",
 		debounce_ms = 150,
 		tls_skip_verify_insecure = false,

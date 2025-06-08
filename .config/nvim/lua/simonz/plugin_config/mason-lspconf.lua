@@ -11,41 +11,65 @@ return {
 				"bashls",
 				"harper_ls",
 				"lua_ls",
-				"pyright",
+				"basedpyright",
 				"rust_analyzer",
-				"pyright",
 				"yamlls",
+				"clangd",
 			},
 			automatic_installation = true,
 		})
 		vim.lsp.config("rust_analyzer", {
 			settings = {
-				diagnostics = {
-					enable = true,
-				},
 				["rust_analyzer"] = {
+					imports = {
+						granularity = {
+							group = "module",
+						},
+						prefix = "self",
+					},
+					diagnostics = {
+						enable = true,
+					},
 					cargo = { allFeatures = true },
+					-- cargo = {
+					-- 	buildScripts = {
+					-- 		enable = true,
+					-- 	},
+					-- },
+					procMacro = {
+						enable = true,
+					},
+					check = {
+						command = "cargo clippy",
+						allTargets = true,
+					},
+					checkOnSave = true,
+				},
+			},
+			filetypes = { "rust" },
+			on_attach = function(client, bufnr)
+				require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end,
+		})
+		vim.lsp.config("basedpyright", {
+			settings = {
+				python = {
+					pythonPath = ".venv/bin/python",
+					venvPath = ".",
+					venv = ".venv",
+					disableTaggedHints = false,
+					analysis = {
+						autoSearchPaths = true,
+						diagnosticMode = "workspace",
+						useLibraryCodeForTypes = true,
+						autoImportCompletions = true,
+					},
 				},
 			},
 			on_attach = function(client, bufnr)
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-			end,
-			filetypes = { "rust" },
-		})
-		vim.lsp.config("pyright", {
-			python = {
-				pythonPath = ".venv/bin/python",
-				venvPath = ".",
-				disableTaggedHints = false,
-				analysis = {
-					autoSearchPaths = true,
-					diagnosticMode = "openFilesOnly",
-					useLibraryCodeForTypes = true,
-					autoImportCompletions = true,
-				},
-			},
-			on_attach = function(client, bufnr)
-				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 			end,
 		})
 		vim.lsp.config("lua_ls", {
@@ -82,6 +106,26 @@ return {
 					},
 				},
 			},
+		})
+
+		vim.lsp.config("arduino_language_server", {
+			cmd = {
+				"arduino-language-server",
+				"-cli-config",
+				vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+				-- uncomment the next two lines if you use the same across different projects; otherwise, see the note about project config
+				-- '-fqbn',
+				-- 'arduino:avr:mega',
+			},
+			-- capabilities = {
+			-- 	textDocument = {
+			-- 		semanticTokens = vim.NIL,
+			-- 	},
+			-- 	workspace = {
+			-- 		semanticTokens = vim.NIL,
+			-- 	},
+			-- },
+			filetypes = { "arduino" },
 		})
 
 		vim.lsp.config("ansiblels", {

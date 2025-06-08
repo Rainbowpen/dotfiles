@@ -35,10 +35,11 @@ vim.keymap.set("n", "<leader>vs", "<C-w>v")
 vim.keymap.set("n", "<leader>sv", "<C-w>s")
 
 -- Navigate between split buffers
-vim.keymap.set("n", "<A-j>", "<cmd>TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<A-k>", "<cmd>TmuxNavigateDown<CR>")
-vim.keymap.set("n", "<A-l>", "<cmd>TmuxNavigateUp<CR>")
-vim.keymap.set("n", "<A-;>", "<cmd>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<A-h>", "<cmd>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<A-j>", "<cmd>TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<A-k>", "<cmd>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<A-l>", "<cmd>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<A-;>", "<cmd>TmuxNavigatePrevious<CR>")
 
 -- Map keys for resize vertical/horizontal window:)
 vim.keymap.set("n", "<leader>=", '<cmd>exe "resize " . (winheight(0) * 4/3)<CR>')
@@ -47,13 +48,23 @@ vim.keymap.set("n", "<leader>,", '<cmd>exe "vertical resize " . (winwidth(0) * 3
 vim.keymap.set("n", "<leader>.", '<cmd>exe "vertical resize " . (winwidth(0) * 4/3)<CR>')
 
 -- Map keys for fzf list)
-vim.keymap.set("n", "<leader><leader>", "<cmd>Buffers<CR>")
-vim.keymap.set("n", "<leader>r", "<cmd>Rg<CR>")
-vim.keymap.set("n", "<leader>f", "<cmd>Files<CR>")
-vim.keymap.set("n", "<leader>l", "<cmd>Lines<CR>")
-vim.keymap.set("n", "<leader>t", "<cmd>Tags<CR>")
-vim.keymap.set("n", "<leader>j", "<cmd>Jump<CR>", { desc = "List jump point." })
-vim.keymap.set("n", "<leader>sk", "<cmd>Maps<CR>", { desc = "[S]earch [K]eymaps" })
+-- vim.keymap.set("n", "<leader><leader>", "<cmd>Buffers<CR>")
+-- vim.keymap.set("n", "<leader>r", "<cmd>Rg<CR>")
+-- vim.keymap.set("n", "<leader>f", "<cmd>Files<CR>")
+-- vim.keymap.set("n", "<leader>l", "<cmd>Lines<CR>")
+-- vim.keymap.set("n", "<leader>t", "<cmd>Tags<CR>")
+-- vim.keymap.set("n", "<leader>j", "<cmd>Jump<CR>", { desc = "List jump point." })
+-- vim.keymap.set("n", "<leader>sk", "<cmd>Maps<CR>", { desc = "[S]earch [K]eymaps" })
+
+-- Map keys for telescope list)
+vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>r", "<cmd>Telescope lsp_references<CR>")
+vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
+vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<CR>")
+vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep<CR>")
+vim.keymap.set("n", "<leader>t", "<cmd>Telescope tags<CR>")
+vim.keymap.set("n", "<leader>j", "<cmd>Telescope jumplist<CR>", { desc = "List jump point." })
+vim.keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<CR>", { desc = "[S]earch [K]eymaps" })
 
 -- Toggleterm keymap
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
@@ -64,8 +75,8 @@ vim.keymap.set("n", "<S-t>", "<Cmd>tabnew<CR>") -- new tab
 vim.keymap.set("n", "<S-t>t", "<Cmd>bdelete<CR>") -- close tab
 
 -- Move between tabs
-vim.keymap.set("n", "<C-n>", "<Cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<C-p>", "<Cmd>BufferLineCyclePrev<CR>")
+-- vim.keymap.set("n", "<C-n>", "<Cmd>BufferLineCycleNext<CR>")
+-- vim.keymap.set("n", "<C-p>", "<Cmd>BufferLineCyclePrev<CR>")
 
 -- Trouble
 vim.keymap.set("n", "<leader>e", "<cmd>Trouble diagnostics_preview toggle<CR>", { desc = "Show [E]rrors" })
@@ -93,12 +104,13 @@ end, { desc = "Debug: Set Conditional Breakpoint" })
 
 -- DAP UI controls
 vim.keymap.set("n", "<F11>", dapui.toggle, { desc = "Debug: Toggle UI" })
-vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Debug: Open REPL" })
-vim.keymap.set("n", "<leader>dl", dap.run_last, { desc = "Debug: Run Last" })
+-- vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Debug: Open REPL" })
+-- vim.keymap.set("n", "<leader>dl", dap.run_last, { desc = "Debug: Run Last" })
 
 -- Variable inspection
-vim.keymap.set({ "n", "v" }, "<leader>dh", require("dap.ui.widgets").hover, { desc = "Debug: Hover Variables" })
-vim.keymap.set({ "n", "v" }, "<leader>dp", require("dap.ui.widgets").preview, { desc = "Debug: Preview Variables" })
+vim.keymap.set("n", "<leader>dk", dapui.eval, { desc = "Debug: Dap UI show eval." })
+-- vim.keymap.set({ "n", "v" }, "<leader>dh", require("dap.ui.widgets").hover, { desc = "Debug: Hover Variables" })
+-- vim.keymap.set({ "n", "v" }, "<leader>dp", require("dap.ui.widgets").preview, { desc = "Debug: Preview Variables" })
 
 -- Terminate session
 vim.keymap.set("n", "<leader>dt", dap.terminate, { desc = "Debug: Terminate" })

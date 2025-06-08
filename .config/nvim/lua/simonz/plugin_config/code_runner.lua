@@ -17,8 +17,14 @@ return {
 			typescript = {
 				"deno run",
 			},
+			arduino = {
+				"arduino-cli compile --build-path ./build && arduino-cli upload && arduino-cli monitor",
+			},
 			rust = {
-				"cargo run",
+				-- "cargo run",
+				"echo \"if [ -f 'Cargo.toml' ]; then",
+				"cargo run;",
+				'else rust-script $dir/$fileName; fi" | bash',
 			},
 			c = function(...)
 				c_base = {

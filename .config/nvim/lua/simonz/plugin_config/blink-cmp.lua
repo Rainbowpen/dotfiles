@@ -1,6 +1,7 @@
 return { -- optional blink completion source for require statements and module annotations
 	"saghen/blink.cmp",
 	dependencies = {
+		-- "rafamadriz/friendly-snippets",
 		"ribru17/blink-cmp-spell",
 		"Kaiser-Yang/blink-cmp-dictionary",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -108,11 +109,13 @@ return { -- optional blink completion source for require statements and module a
 		},
 		keymap = {
 			-- set to 'none' to disable the 'default' preset
-			preset = "default",
+			preset = "none",
 			["<C-y>"] = { "accept" },
 
 			["<Up>"] = { "select_prev", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback" },
 			["<Down>"] = { "select_next", "fallback" },
+			["<C-j>"] = { "select_next", "fallback" },
 			["<Left>"] = { "scroll_documentation_up", "fallback" },
 			["<Right>"] = { "scroll_documentation_down", "fallback" },
 

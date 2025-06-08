@@ -18,36 +18,25 @@ local colors = {
 	--orange = '#e5c07b'
 
 	bg = "#c8d3f5",
-	bg_dark = "#82aaff",
 	bg_highlight = "#fff",
-	lightbg = "#65bcff",
-	lightbg2 = "#b4f9f8",
+	lightbg = "#394b70",
+	lightbg2 = "#81A1C1",
 	blue = "#82aaff",
-	blue0 = "#3e68d7",
-	blue1 = "#65bcff",
-	blue2 = "#0db9d7",
-	blue5 = "#89ddff",
-	blue6 = "#b4f9f8",
-	blue7 = "#394b70",
 	comment = "#636da6",
 	cyan = "#86e1fc",
-	dark3 = "#545c7e",
-	dark5 = "#737aa2",
-	fg = "#737aa2",
+	fg = "#3b4261",
 	fg_dark = "#828bb8",
 	fg_gutter = "#3b4261",
-	green = "#c3e88d",
-	green1 = "#4fd6be",
-	green2 = "#41a6b5",
+	green = "#98CE00",
 	magenta = "#c099ff",
 	magenta2 = "#ff007c",
 	orange = "#ff966c",
 	purple = "#fca7ea",
-	red = "#ff757f",
-	red1 = "#c53b53",
+	-- red = "#ff757f",
+	red = "#c53b53",
 	teal = "#4fd6be",
 	terminal_black = "#444a73",
-	yellow = "#ffc777",
+	yellow = "#ff966c",
 	grey = "#6f737b",
 }
 
@@ -115,7 +104,7 @@ gls.left[3] = {
 	FileIcon = {
 		provider = "FileIcon",
 		condition = condition.buffer_not_empty,
-		highlight = { colors.fg, colors.lightbg },
+		highlight = { colors.bg, colors.lightbg },
 	},
 }
 
@@ -123,7 +112,7 @@ gls.left[4] = {
 	FileName = {
 		provider = { "FileName" },
 		condition = condition.buffer_not_empty,
-		highlight = { colors.fg, colors.lightbg },
+		highlight = { colors.lightbg2, colors.lightbg },
 		separator = " ",
 		separator_highlight = { colors.lightbg, colors.lightbg2 },
 	},
@@ -133,9 +122,9 @@ gls.left[5] = {
 	current_dir = {
 		provider = function()
 			local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-			return "  " .. dir_name .. " "
+			return " " .. dir_name .. " "
 		end,
-		highlight = { colors.grey, colors.lightbg2 },
+		highlight = { colors.lightbg, colors.lightbg2 },
 		separator = " ",
 		separator_highlight = { colors.lightbg2, colors.bg },
 	},
@@ -163,7 +152,7 @@ gls.left[7] = {
 		provider = "DiffModified",
 		condition = condition.hide_in_width,
 		icon = "   ",
-		highlight = { colors.grey, colors.bg },
+		highlight = { colors.fg, colors.bg },
 	},
 }
 
@@ -172,7 +161,7 @@ gls.left[8] = {
 		provider = "DiffRemove",
 		condition = condition.hide_in_width,
 		icon = "  ",
-		highlight = { colors.grey, colors.bg },
+		highlight = { colors.fg, colors.bg },
 	},
 }
 

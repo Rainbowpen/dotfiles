@@ -40,6 +40,10 @@ return {
 					require("formatter.filetypes.rust").rustfmt,
 				},
 
+				arduino = {
+					require("formatter.filetypes.cpp").clangformat,
+				},
+
 				["yaml.ansible"] = {
 					require("formatter.filetypes.yaml").yamlfmt,
 				},

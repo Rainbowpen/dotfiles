@@ -1,5 +1,6 @@
 vim.cmd([[
-    colorscheme tokyonight-night
+    "colorscheme tokyonight-night
+    colorscheme tokyonight-day
     let g:tmux_navigator_no_mappings = 1
     autocmd FileType * map <buffer> <F9> :w<CR>:RunCode<CR>
 
@@ -49,17 +50,17 @@ vim.cmd([[
     ]])
 
 -- Auto save after a while.
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
-	callback = function(event)
-		if vim.api.nvim_buf_get_option(event.buf, "modified") then
-			vim.schedule(function()
-				vim.api.nvim_buf_call(event.buf, function()
-					vim.cmd("silent! write")
-				end)
-			end)
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "VimLeavePre" }, {
+-- 	callback = function(event)
+-- 		if vim.api.nvim_buf_get_option(event.buf, "modified") then
+-- 			vim.schedule(function()
+-- 				vim.api.nvim_buf_call(event.buf, function()
+-- 					vim.cmd("silent! write")
+-- 				end)
+-- 			end)
+-- 		end
+-- 	end,
+-- })
 
 -- formate after save.
 local augroup = vim.api.nvim_create_augroup

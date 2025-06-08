@@ -205,7 +205,7 @@ gls.right[1] = {
 	lsp_status = {
 		provider = function(msg)
 			msg = msg or "No Active Lsp"
-			local clients = vim.lsp.get_active_clients()
+			local clients = vim.lsp.get_clients()
 			if next(clients) ~= nil then
 				return " " .. "  " .. " active "
 			else
