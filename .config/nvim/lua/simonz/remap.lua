@@ -24,9 +24,15 @@ vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 --vim.keymap.set("n", "<leader>k", vim.lsp.codelens.display())
 
+-- netrw
+--vim.keymap.set("n", "<leader>n", "<cmd>Explore<CR>")
+
+-- yazi
+vim.keymap.set("n", "<leader>n", "<cmd>Yazi<cr>", { desc = "Open the file manager at the current file." })
+
 -- Neovim tree
 --vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
-vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFileToggle<CR>")
+--vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFileToggle<CR>")
 -- vim.keymap.set("n", "<leader>N", "<cmd>NvimTreeRefresh<CR>")
 -- vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFile<CR>")
 
@@ -65,10 +71,11 @@ vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope tags<CR>")
 vim.keymap.set("n", "<leader>j", "<cmd>Telescope jumplist<CR>", { desc = "List jump point." })
 vim.keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<CR>", { desc = "[S]earch [K]eymaps" })
+vim.keymap.set("n", "<leader>/", "<cmd>Telescope lsp_document_symbols <CR>", { desc = "Search Document symbols" })
 
 -- Toggleterm keymap
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>ToggleTermToggleAll<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>a", "<cmd>ToggleTermToggleAll<CR>", { noremap = true, silent = true })
 
 -- MAPPINGS
 vim.keymap.set("n", "<S-t>", "<Cmd>tabnew<CR>") -- new tab

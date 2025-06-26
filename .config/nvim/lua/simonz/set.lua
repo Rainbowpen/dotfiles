@@ -35,6 +35,7 @@ vim.opt.spell = false
 vim.opt.spelllang = { "en_us" }
 vim.diagnostic.config({ virtual_text = false })
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.g.netrw_winsize = 100
 
 vim.filetype.add({
 	extension = {

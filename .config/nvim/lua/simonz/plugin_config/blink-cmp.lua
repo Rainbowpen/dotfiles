@@ -62,7 +62,7 @@ return { -- optional blink completion source for require statements and module a
 		},
 		sources = {
 			-- add lazydev to your completion providers
-			default = { "lazydev", "lsp", "path", "snippets", "buffer", "dictionary", "spell" },
+			default = { "lazydev", "lsp", "path", "snippets", "buffer", "spell", "dictionary" },
 			providers = {
 				lazydev = {
 					name = "LazyDev",
@@ -76,6 +76,7 @@ return { -- optional blink completion source for require statements and module a
 				spell = {
 					name = "Spell",
 					module = "blink-cmp-spell",
+					score_offset = 2,
 					opts = {
 						-- EXAMPLE: Only enable source in `@spell` captures, and disable it
 						-- in `@nospell` captures.
@@ -100,6 +101,8 @@ return { -- optional blink completion source for require statements and module a
 					-- Make sure this is at least 2.
 					-- 3 is recommended
 					min_keyword_length = 3,
+
+					score_offset = 0,
 					opts = {
 						-- options for blink-cmp-dictionary
 						dictionary_directories = { vim.fn.expand("/home/simon/.local/share/english-words") },
@@ -113,9 +116,9 @@ return { -- optional blink completion source for require statements and module a
 			["<C-y>"] = { "accept" },
 
 			["<Up>"] = { "select_prev", "fallback" },
-			["<C-k>"] = { "select_prev", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback" },
 			["<Down>"] = { "select_next", "fallback" },
-			["<C-j>"] = { "select_next", "fallback" },
+			["<C-n>"] = { "select_next", "fallback" },
 			["<Left>"] = { "scroll_documentation_up", "fallback" },
 			["<Right>"] = { "scroll_documentation_down", "fallback" },
 

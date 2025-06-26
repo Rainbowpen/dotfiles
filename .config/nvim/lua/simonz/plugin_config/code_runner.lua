@@ -18,7 +18,7 @@ return {
 				"deno run",
 			},
 			arduino = {
-				"arduino-cli compile --build-path ./build && arduino-cli upload && arduino-cli monitor",
+				"arduino-cli compile --build-path ./build && arduino-cli upload --build-path ./build  && arduino-cli monitor",
 			},
 			rust = {
 				-- "cargo run",
