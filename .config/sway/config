@@ -9,28 +9,35 @@
 #:......::::...::...:::..:::::..:::::..:::::#
 #############################################
 
+#fix sway import wayland-display timing problem.
+exec systemctl --user import-environment WAYLAND_DISPLAY
+exec systemctl --user restart xdg-desktop-portal-gtk
+
 # Import config from files
 include ~/.config/sway/workspaces_name
 include ~/.config/sway/$(hostname)/*
 exec_always ~/.config/sway/scripts/import-gsettings.sh
+#exec systemctl --user import-environment
+#exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Variables
 set $mod Mod4
 set $sup Mod1
-set $lock ~/.local/bin/scripts/swaylock.sh
+set $lock ~/.config/sway/scripts/swaylock.sh
 set $wifi ~/.config/rofi/modi/nmcli
-set $term kitty
+set $term ghostty
+set $clipboard-manager copyq toggle
 set $screenshot grim ~/Pictures/Screenshots/screenshot-from-$(date +"%Y-%m-%d_%H-%M-%S").png
 set $screenclip slurp | grim -g - ~/Pictures/Screenshots/screenshot-from-$(date +"%Y-%m-%d_%H-%M-%S").png
-set $wallpaper /home/simon/Pictures/My-Wallpaper/525.jpg
+set $wallpaper /home/simon/Pictures/My-Wallpaper/574.jpg
 
-set $cl_high #85D187
-set $cl_indi #85D187
+set $cl_high #70c6e3
+set $cl_indi #e39070
 set $cl_back #231f20
 set $cl_fore #85D187
 set $cl_urge #ee2e24
-
 # white #d9d8d8
+# green #85D187
 
 
 # Colors                border   bg       text     indi     childborder
@@ -52,7 +59,9 @@ gaps inner 10
 
 # Input configuration
 input "1133:50184:Logitech_USB_Trackball" {
+    scroll_button BTN_EXTRA
     scroll_method on_button_down
+    scroll_factor 0.5
 }
 
 input type:touchpad {
@@ -62,7 +71,10 @@ input type:touchpad {
 
 input * {
     xkb_layout us
+    xkb_variant altgr-intl
     xkb_options caps:escape
+    repeat_rate 70
+    repeat_delay 350
 }
 
 # Output configuration
@@ -70,21 +82,47 @@ output * bg $wallpaper fill
 
 
 # Autostart
+# exec --no-startup-id wayland-pipewire-idle-inhibit
+exec kdeconnectd
+exec kdeconnect-indicator
+exec hypridle
+exec flatpak run --command=pika-backup-monitor org.gnome.World.PikaBackup
 exec --no-startup-id fcitx5 -d
 exec --no-startup-id mako
+exec --no-startup-id copyq
+#exec --no-startup-id blueman-applet
 exec autotiling
-exec --no-startup-id swaymsg 'workspace $wsF12; exec /var/lib/snapd/snap/bin/spotify' 
-exec --no-startup-id swaymsg 'workspace $wsF11; exec thunderbird' 
-#exec --no-startup-id swaymsg 'workspace $ws5; exec nautilus' 
-exec --no-startup-id swaymsg 'workspace $ws1; exec kitty' 
+#exec_always --no-startup-id flashfocus
+exec --no-startup-id swaymsg 'workspace $ws1; exec ghostty'
+# exec --no-startup-id swaymsg 'workspace $ws2; exec flatpak run app.zen_browser.zen'
+exec --no-startup-id swaymsg 'workspace $ws2; exec firefox'
+# exec --no-startup-id swaymsg 'workspace $ws3; exec nautilus'
+exec --no-startup-id swaymsg 'workspace $ws5; exec spotify-launcher'
+exec --no-startup-id swaymsg 'workspace $ws6; exec thunderbird'
+#exec --no-startup-id swaymsg 'workspace $wsF10; exec notion-app-enhanced'
+#exec --no-startup-id swaymsg 'workspace $wsF9; exec discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy'
+#exec --no-startup-id swaymsg 'workspace $ws5; exec nemo'
 
 # Default workspaces for common programs example
 #assign [class="^Chromium$"] $ws1
 #assign [class="^code-oss$"] $ws2
+assign [class="Spotify"] $ws5
+assign [app_id="com.moonlight_stream.Moonlight"] $ws7
+assign [app_id="Waydroid"] $ws8
+# assign [class="(?i)Discord"] $wsF9
 
 # Default floating app
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="python3"] floating enable
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="org.gnome.Calendar"] floating enable
+for_window [app_id="com.github.hluk.copyq"] floating enable
+for_window [title="Figure*"] floating enable
+for_window [app_id = "xdg-desktop-portal-gtk"] floating enable;
+for_window [app_id = "gamescope"] floating enable;
+for_window [class = "steam"] floating enable;
+for_window [app_id = "blueman-manager"] floating enable;
+for_window [app_id = "org.kde.kdeconnect-indicator"] floating enable;
 
 # Shortcuts
 bindsym $mod+Return exec $term
@@ -93,12 +131,13 @@ bindsym $mod+Shift+Print exec $screenclip
 bindsym $mod+d exec $menu
 bindsym $mod+Escape exec --no-startup-id $window_selector
 bindsym $mod+Shift+Tab exec $findapp
+bindsym $mod+c exec $clipboard-manager
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+r reload
 #bindsym $mod+Shift+e exit
-bindsym $mod+h splith
-bindsym $mod+v splitv
+# bindsym $mod+h splith
+# bindsym $mod+v splitv
 
 bindsym $mod+Shift+x exec $lock
 #bindsym $mod+Escape exec $power
@@ -109,8 +148,8 @@ bindsym Control+Escape exec makoctl dismiss
 bindsym Control+Shift+Space exec makoctl dismiss --all
 
 # Multimedia
-bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +3%
-bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -3%
+bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%
+bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%
 bindsym --locked XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
 bindsym --locked XF86AudioPlay exec playerctl --player spotify play-pause
 bindsym --locked XF86AudioNext exec playerctl next
@@ -120,7 +159,7 @@ bindsym --locked XF86AudioPrev exec playerctl previous
 bindsym --locked XF86MonBrightnessUp exec --no-startup-id brightnessctl s 2%+
 bindsym --locked XF86MonBrightnessDown exec --no-startup-id brightnessctl s 2%-
 
-# switch to last workspace 
+# switch to last workspace
 bindsym $mod+Tab workspace back_and_forth
 
 # control gaps
@@ -129,18 +168,21 @@ bindsym $mod+Shift+p gaps inner current set 0
 
 
 # Idle configuration
-exec swayidle -w \
-    timeout 300 'exec $lock' \
-    timeout 330 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'exec $lock'
+# exec swayidle -w \
+#     timeout 900 'exec $lock' \
+#     timeout 180 'swaymsg "output * dpms off"' \
+#     resume 'swaymsg "output * dpms on"' \
+#     before-sleep 'exec $lock'
 
 
 # Move your focus around
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Hint the window that focus
+# bindsym $mod+n exec --no-startup-id flash_window
 
 
 # _move_ the focused window with the same, but add Shift
@@ -149,21 +191,23 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # next and prev workspace
 bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
+bindsym $mod+p workspace prev
+bindsym $mod+n workspace next
 
 
 # move current workspace between monitors
-bindsym $mod+Control+j move workspace to output left
-bindsym $mod+Control+k move workspace to output down
-bindsym $mod+Control+l move workspace to output up
-bindsym $mod+Control+semicolon move workspace to output right
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
 
 
 # switch to workspace
@@ -171,58 +215,33 @@ bindsym $mod+1   workspace $ws1
 bindsym $mod+2   workspace $ws2
 bindsym $mod+3   workspace $ws3
 bindsym $mod+4   workspace $ws4
-bindsym $mod+5   workspace $ws5
-bindsym $mod+6   workspace $ws6
-bindsym $mod+7   workspace $ws7
-bindsym $mod+8   workspace $ws8
-bindsym $mod+9   workspace $ws9
-bindsym $mod+0   workspace $ws10
-bindsym $mod+F1  workspace $wsF1
-bindsym $mod+F2  workspace $wsF2
-bindsym $mod+F3  workspace $wsF3
-bindsym $mod+F4  workspace $wsF4
-bindsym $mod+F5  workspace $wsF5
-bindsym $mod+F6  workspace $wsF6
-bindsym $mod+F7  workspace $wsF7
-bindsym $mod+F8  workspace $wsF8
-bindsym $mod+F9  workspace $wsF9
-bindsym $mod+F10 workspace $wsF10
-bindsym $mod+F11 workspace $wsF11
-bindsym $mod+F12 workspace $wsF12
+bindsym $mod+F9   workspace $ws5
+bindsym $mod+F10  workspace $ws6
+bindsym $mod+F11  workspace $ws7
+bindsym $mod+F12  workspace $ws8
 
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace $ws1
 bindsym $mod+Shift+2    move container to workspace $ws2
 bindsym $mod+Shift+3    move container to workspace $ws3
 bindsym $mod+Shift+4    move container to workspace $ws4
-bindsym $mod+Shift+5    move container to workspace $ws5
-bindsym $mod+Shift+6    move container to workspace $ws6
-bindsym $mod+Shift+7    move container to workspace $ws7
-bindsym $mod+Shift+8    move container to workspace $ws8
-bindsym $mod+Shift+9    move container to workspace $ws9
-bindsym $mod+Shift+0    move container to workspace $ws10
-bindsym $mod+Shift+F1   move container to workspace $wsF1
-bindsym $mod+Shift+F2   move container to workspace $wsF2
-bindsym $mod+Shift+F3   move container to workspace $wsF3
-bindsym $mod+Shift+F4   move container to workspace $wsF4
-bindsym $mod+Shift+F5   move container to workspace $wsF5
-bindsym $mod+Shift+F6   move container to workspace $wsF6
-bindsym $mod+Shift+F7   move container to workspace $wsF7
-bindsym $mod+Shift+F8   move container to workspace $wsF8
-bindsym $mod+Shift+F9   move container to workspace $wsF9
-bindsym $mod+Shift+F10  move container to workspace $wsF10
-bindsym $mod+Shift+F11  move container to workspace $wsF11
-bindsym $mod+Shift+F12  move container to workspace $wsF12
+bindsym $mod+Shift+F9   move container to workspace $ws5
+bindsym $mod+Shift+F10  move container to workspace $ws6
+bindsym $mod+Shift+F11  move container to workspace $ws7
+bindsym $mod+Shift+F12  move container to workspace $ws8
 
 # Layout stuff:
 
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
+
+# switch between monitors
+bindsym $mod+m output "HDMI-A-1" toggle ; output "eDP-1" toggle
 
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
@@ -230,10 +249,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # move focus to the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+c focus child
+# bindsym $mod+c focus child
 
 
 # Move the currently focused window to the scratchpad
@@ -248,11 +267,11 @@ mode "resize" {
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
-	
-	bindsym j resize shrink width 10px
-    bindsym k resize grow height 10px
-    bindsym l resize shrink height 10px
-    bindsym semicolon resize grow width 10px
+
+	bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
 
 	# return to default mode
     bindsym Return mode "default"
@@ -275,5 +294,3 @@ mode "$mode_system" {
 bindsym $mod+Shift+e mode "$mode_system"
 
 exec_always ~/.config/waybar/waybar.sh
-
-

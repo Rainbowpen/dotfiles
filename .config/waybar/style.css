@@ -22,48 +22,39 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   Roboto, Helvetica, Arial, sans-serif;
+    /* font-family:   Adwaita Sans; */
+    font-family: CaskaydiaMono Nerd Font Propo;
+    /* font-family:   Adwaita Sans, Roboto, Helvetica, Arial, sans-serif; */
     /*font-family: monospace;*/
+    /* font-weight: Bold; */
     font-size:     17px;
     box-shadow:    none;
     text-shadow:   none;
     transition-duration: .2s;
 }
 
+button {
+  all: unset;
+}
+
+label {
+  all: unset;
+}
+
 window#waybar {
   color:      rgba(217, 216, 216, 1);
-  background: rgba(0, 0, 0, 0);
+  background: rgba(0, 0, 0, 9);
   transition-duration: .4s;
 }
 
 window#waybar.empty {
   color:      rgba(217, 216, 216, 1);
-  background: rgba(35, 31, 32, 0.0);
+  background: rgba(35, 31, 32, .9);
 }
 
 window#waybar.solo {
   color:      rgba(217, 216, 216, 1);
-  background: rgba(35, 31, 32, .5);
-}
-
-window#waybar.kitty {
-  color:      rgba(217, 216, 216, 1);
-  background: rgba(44, 44, 55, .8);
-}
-
-window#waybar.chromium, window#waybar.Navigator, window#waybar.spotify {
-  color:      rgba(217, 216, 216, 1);
-  background: rgba(0, 0, 0, 1);
-}
-
-window#waybar.Navigator ~ #custom-spotify_py {
-  border: 10px solid;
-  border-color: rgba(255, 255, 255,1);
-}
-
-window#waybar.Mail {
-  color:      rgba(217, 216, 216, 1);
-  background: rgba(28, 27, 34, 1);
+  background: rgba(35, 31, 32, 1);
 }
 
 /* module style start */
@@ -73,7 +64,6 @@ window#waybar.Mail {
 
 #workspaces button {
     padding:    0 5px;
-    border-top: 3px solid rgba(217, 216, 216, 0);
     color:      rgba(217, 216, 216, 0.4);
 }
 
@@ -87,7 +77,6 @@ window#waybar.Mail {
 }
 
 #workspaces button.focused {
-    border-top: 3px solid rgba(217, 216, 216, 1);
     border-bottom: 0px solid rgba(217, 216, 216, 1);
 }
 
@@ -95,30 +84,43 @@ window#waybar.Mail {
     color:      rgba(238, 46, 36, 1);
 }
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #tray, #clock{
-    padding: 2px 6px 0px 6px;
-    border-radius:5px;
-    margin:     1px 1px;
-    /*min-width:  25px;*/
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#tray,
+#custom-calculator,
+#custom-calendar,
+#bluetooth,
+#clock{
+    min-width: 12px;
+    margin-right: 13px;
+
 }
 
 #custom-spotify_py {
     padding: 0px 6px 0px 6px;
-    border-radius: 0px 0px 10px 10px;
-    margin: 0px 0px 0px 0px;
-    color: rgba(217, 216, 216, 1);
-    background:      rgba(0, 0, 0, 1);
+    border-radius: 5px 5px 5px 5px;
+    margin: 0px 13px 0px 0px;
+    /* color: rgba(217, 216, 216, 1); */
+    color: rgba(0, 0, 0, 1);
+    background: rgba(255, 255, 255, 1);
     font-family: "Erbos Draco 1st Open NBP";
     font-size:     13px;
     border-left: .2px solid;
     border-right: .2px solid;
+    border-top: .2px solid;
     border-bottom: .2px solid;
-    border-color: rgba(255, 255, 255,1);
+    border-color: rgba(0, 0, 0,1);
 }
 
-#battery.warning, 
+#battery.warning,
 #cpu.warning,
 #memory.warning {
+    border-radius: 5px 5px 5px 5px;
     background: @warning;
     color:      @dark;
 }
@@ -126,6 +128,7 @@ window#waybar.Mail {
 #battery.critical,
 #cpu.critical,
 #memory.critical {
+    border-radius: 5px 5px 5px 5px;
     background: @critical;
     color:      @light;
 }

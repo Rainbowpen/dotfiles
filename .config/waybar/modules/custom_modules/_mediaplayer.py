@@ -12,8 +12,6 @@ from gi.repository import Playerctl, GLib
 import threading
 import time
 
-time.sleep(3)
-
 logger = logging.getLogger(__name__)
 
 
@@ -33,7 +31,7 @@ def output_text():
     
     while True:
         text = ''
-        
+
         if stop_output or not g_player or not show_text:
             time.sleep(5)
             continue
@@ -107,12 +105,15 @@ def on_metadata(player, metadata, manager):
     else:
         isplaying = True
 
+
     g_player = player
     show_text = track_info
     #write_output(track_info, player)
 
 
 def on_player_appeared(manager, player, selected_player=None):
+    print('player appeared!!')
+    print(f'{selected_player = }, {player}')
     global stop_output
     if player is not None and (selected_player is None or player.name == selected_player):
         init_player(manager, player)
@@ -123,6 +124,7 @@ def on_player_appeared(manager, player, selected_player=None):
 
 
 def on_player_vanished(manager, player):
+    print('player vanished!!!')
     global stop_output
     logger.info('Player has vanished')
     sys.stdout.write('\n')

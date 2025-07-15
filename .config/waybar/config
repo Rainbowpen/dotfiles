@@ -4,14 +4,20 @@
     "height": 23,
 
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["custom/spotify_py", "sway/window"],
-    "modules-right": [ "cpu", "memory", "pulseaudio", "network", "idle_inhibitor", "tray", "battery", "clock" ],
+    "modules-center": ["clock",  "sway/window"],
+    "modules-right": [ "custom/spotify_py", "cpu", "pulseaudio", "tray", "custom/calculator", "custom/calendar", "network", "idle_inhibitor", "bluetooth", "battery" ],
     "sway/mode": {
         "format": " {}"
     },
     "sway/workspaces": {
-        "format": "{name}",
-        "disable-scroll": false
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+          "default": "○",
+          "active": "󱓻",
+          "focused": "●",
+          "urgent": "◉",
+        },
     },
     "sway/window": {
         "format":"",
@@ -24,41 +30,53 @@
 		"spacing": 10
     },
     "clock": {
-        "format": " {:%H:%M}",
-        "format-alt": " {:%a %d %b %H:%M}",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%a %d %b %H:%M}",
         "format-alt-click": "click-left",
         "tooltip": false
     },
     "battery": {
-        "format": "{icon} {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
-        "format-charging": " {capacity}%",
-        "format-full": "",
-        "interval": 10,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "tooltip": true
+      "format": "{capacity}% {icon}",
+      "format-discharging": "{icon}",
+      "format-charging":    "{icon}",
+      "format-plugged":     "",
+      "format-icons": {
+        "charging": [
+          "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"
+        ],
+        "default": [
+          "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+        ]
+      },
+      "format-full": "󰂅",
+      "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+      "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+      "interval": 5,
+      "states": {
+        "warning": 20,
+        "critical": 10
+      }
     },
     "network": {
-        "format": "{icon}",
-        "format-icons": {
-            "wifi": "",
-            "ethernet": "",
-            "disconnected": ""
-        },
-    	"tooltip": true,
-    	"tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    	"tooltip-format-ethernet": "{ifname}",
-    	"tooltip-format-disconnected": "Disconnected"
+      "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+      "format" : "{icon}",
+      "format-wifi" : "{icon}",
+      "format-ethernet" : "󰀂",
+      "format-disconnected" : "󰖪",
+      "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+      "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+      "tooltip-format-disconnected": "Disconnected",
+      "interval": 3,
+      "nospacing": 1,
+      "on-click": "alacritty --class=Impala -e impala"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " ",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted":" ",
         "format-icons": {
             "headphone": "",
+            "headset": "",
             "default": ["", "", ""]
         },
         "scroll-step": 1,
@@ -68,19 +86,21 @@
     "custom/spotify_py": {
         "exec": "/usr/bin/python3 /home/simon/.config/waybar/modules/custom_modules/mediaplayer.py --player spotify",
         "format": " {}",
+        "escape": true,
         "return-type": "json",
         "on-click": "playerctl --player spotify play-pause",
         "on-scroll-up": "playerctl --player spotify next",
-        "on-scroll-down": "playerctl --player spotify previous"
+        "on-scroll-down": "playerctl --player spotify previous",
+        "exec-if": "spotify"
     },
 	"cpu": {
-    	"interval": 2,
-    	"format": " {usage}%",
+    	"interval": 1,
+        "format": " {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
 		"states": {
             "warning": 70,
             "critical": 90
         },
-    	"max-length": 10
 	},
 	"memory": {
     	"interval": 1,
@@ -94,8 +114,28 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-        	"activated": "",
-        	"deactivated": ""
+        	"activated": "",
+        	"deactivated": "󰤄"
         }
-    }
+    },
+    "bluetooth": {
+      "format": "",
+      "format-disabled": "󰂲",
+      "format-connected": "",
+      "tooltip-format": "Devices connected: {num_connections}",
+      "on-click": "blueman-manager"
+    },
+    "custom/pomo": {
+    	"interval": 1,
+        "exec": "pomo st",
+        "format": " {} ",
+    },
+    "custom/calculator": {
+        "format": "",
+        "on-click": "gnome-calculator",
+    },
+    "custom/calendar": {
+        "format": "",
+        "on-click": "gnome-calendar",
+    },
 }
