@@ -28,7 +28,8 @@ return {
 		-- model = "codellama:7b-code",
 		-- model = "qwen2.5-coder:7b-base",
 		-- model = "qwen2.5-coder:3b-base",
-		model = "qwen2.5-coder:0.5b-base",
+		-- model = "qwen2.5-coder:0.5b-base",
+		model = "qwen2.5-coder:14b-base",
 		tokens_to_clear = { "<EOT>" },
 		context_window = 4096,
 		-- fim = {
@@ -44,7 +45,19 @@ return {
 			suffix = " <|fim_suffix|>",
 		},
 		enable_suggestions_on_startup = true,
-		enable_suggestions_on_files = { "*.rs", "*.py", "*.sh", "*.yml", "*.md", "*.ansible", "*.fish", "*.ino" }, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
+		enable_suggestions_on_files = {
+			"*.cpp",
+			"*.h",
+			"*.lua",
+			"*.rs",
+			"*.py",
+			"*.sh",
+			"*.yml",
+			"*.md",
+			"*.ansible",
+			"*.fish",
+			"*.ino",
+		}, -- pattern matching syntax to enable suggestions on specific files, either a string or a list of strings
 		accept_keymap = "<C-j>",
 		dismiss_keymap = "<S-Tab>",
 		debounce_ms = 150,
