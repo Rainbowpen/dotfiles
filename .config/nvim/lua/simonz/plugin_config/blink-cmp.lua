@@ -1,12 +1,19 @@
 return { -- optional blink completion source for require statements and module annotations
 	"saghen/blink.cmp",
 	dependencies = {
-		-- "rafamadriz/friendly-snippets",
+		"folke/lazydev.nvim",
 		"ribru17/blink-cmp-spell",
 		"Kaiser-Yang/blink-cmp-dictionary",
+		"saghen/blink.lib",
+		"rafamadriz/friendly-snippets",
+		"mikavilpas/blink-ripgrep.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	build = "cargo +nightly build --release",
+	build = function()
+		-- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+		-- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+		require("blink.cmp").build():pwait()
+	end,
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	-- Controls how the completion items are rendered on the popup window
 	opts = {
@@ -62,8 +69,14 @@ return { -- optional blink completion source for require statements and module a
 		},
 		sources = {
 			-- add lazydev to your completion providers
-			default = { "lazydev", "lsp", "path", "snippets", "buffer", "spell", "dictionary" },
+			default = { "lazydev", "lsp", "path", "snippets", "buffer", "spell", "dictionary", "ripgrep" },
 			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					-- make lazydev completions top priority (see `:h blink.cmp`)
+					score_offset = 100,
+				},
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
@@ -107,6 +120,14 @@ return { -- optional blink completion source for require statements and module a
 						-- options for blink-cmp-dictionary
 						dictionary_directories = { vim.fn.expand("/home/simon/.local/share/english-words") },
 					},
+				},
+				ripgrep = {
+					module = "blink-ripgrep",
+					name = "Ripgrep",
+					-- see the full configuration below for all available options
+					---@module "blink-ripgrep"
+					---@type blink-ripgrep.Options
+					opts = {},
 				},
 			},
 		},

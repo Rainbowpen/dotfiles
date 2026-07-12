@@ -66,7 +66,7 @@ vim.keymap.set("n", "<leader>.", '<cmd>exe "vertical resize " . (winwidth(0) * 4
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope find_files<CR>")
-vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<CR>")
+-- vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>l", "<cmd>Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>t", "<cmd>Telescope tags<CR>")
 vim.keymap.set("n", "<leader>j", "<cmd>Telescope jumplist<CR>", { desc = "List jump point." })
@@ -82,8 +82,8 @@ vim.keymap.set("n", "<S-t>", "<Cmd>tabnew<CR>") -- new tab
 vim.keymap.set("n", "<S-t>t", "<Cmd>bdelete<CR>") -- close tab
 
 -- Move between tabs
--- vim.keymap.set("n", "<C-n>", "<Cmd>BufferLineCycleNext<CR>")
--- vim.keymap.set("n", "<C-p>", "<Cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "<C-n>", "<Cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<C-p>", "<Cmd>BufferLineCyclePrev<CR>")
 
 -- Trouble
 vim.keymap.set("n", "<leader>e", "<cmd>Trouble diagnostics_preview toggle<CR>", { desc = "Show [E]rrors" })
@@ -121,3 +121,35 @@ vim.keymap.set("n", "<leader>dk", dapui.eval, { desc = "Debug: Dap UI show eval.
 
 -- Terminate session
 vim.keymap.set("n", "<leader>dt", dap.terminate, { desc = "Debug: Terminate" })
+
+-- harpoon
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+
+-- Basic Harpoon command keymaps
+vim.keymap.set("n", "<leader>a", function()
+	harpoon:list():add()
+end, { desc = "harpoon file" })
+vim.keymap.set("n", "<C-e>", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "harpoon ui" })
+
+-- Navigate to specific harpoon marks
+vim.keymap.set("n", "<C-h>", function()
+	harpoon:list():select(1)
+end, { desc = "harpoon to file 1" })
+vim.keymap.set("n", "<C-j>", function()
+	harpoon:list():select(2)
+end, { desc = "harpoon to file 2" })
+vim.keymap.set("n", "<C-k>", function()
+	harpoon:list():select(3)
+end, { desc = "harpoon to file 3" })
+vim.keymap.set("n", "<C-l>", function()
+	harpoon:list():select(4)
+end, { desc = "harpoon to file 4" })
+----
+
+-- neogen
+vim.keymap.set("n", "<leader>N", "<cmd>Neogen<CR>", { desc = "[N]eogen" })

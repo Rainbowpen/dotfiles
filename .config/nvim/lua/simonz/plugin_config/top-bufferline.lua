@@ -3,7 +3,7 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
-				numbers = "none",
+				-- numbers = "none",
 				-- NOTE: this plugin is designed with this icon in mind,
 				-- and so changing this is NOT recommended, this is intended
 				-- as an escape hatch for people who cannot bear it for whatever reason
@@ -25,33 +25,85 @@ return {
 					return "(" .. count .. ")"
 				end,
 				-- NOTE: this will be called a lot so don't do any heavy processing here
-				custom_filter = function(buf_number)
-					-- filter out filetypes you don't want to see
-					if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-						return true
+				-- custom_filter = function(buf_number)
+				-- 	-- filter out filetypes you don't want to see
+				-- 	if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
+				-- 		return true
+				-- 	end
+				-- 	-- filter out by buffer name
+				-- 	if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
+				-- 		return true
+				-- 	end
+				-- 	-- filter out based on arbitrary rules
+				-- 	-- e.g. filter out vim wiki buffer from tabline in your work repo
+				-- 	if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
+				-- 		return true
+				-- 	end
+				-- end,
+
+				numbers = function(opts)
+					local harpoon = require("harpoon")
+					local marks = harpoon:list().items
+					local bufname = vim.fn.bufname(opts.id)
+					local key_list = { "h", "j", "k", "l" }
+
+					for i, mark in ipairs(marks) do
+						local full_path = vim.fn.fnamemodify(mark.value, ":p")
+						if bufname == mark.value or bufname == full_path then
+							if i <= 4 then
+								return key_list[i]
+							end
+							return i
+						end
 					end
-					-- filter out by buffer name
-					if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-						return true
-					end
-					-- filter out based on arbitrary rules
-					-- e.g. filter out vim wiki buffer from tabline in your work repo
-					if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-						return true
-					end
+
+					return -1
 				end,
+				custom_filter = function(buf_number, buf_numbers)
+					local harpoon = require("harpoon")
+					local marks = harpoon:list().items
+					for _, mark in ipairs(marks) do
+						local full_path = vim.fn.fnamemodify(mark.value, ":p")
+						if vim.fn.bufname(buf_number) == full_path or vim.fn.bufname(buf_number) == mark.value then
+							return true
+						end
+					end
+					return false
+				end,
+				sort_by = function(buffer_a, buffer_b)
+					local a = 1
+					local b = 1
+
+					local harpoon = require("harpoon")
+					local marks = harpoon:list().items
+					for _, mark in ipairs(marks) do
+						local full_path = vim.fn.fnamemodify(mark.value, ":p")
+						if vim.fn.bufname(buffer_a.id) == full_path or vim.fn.bufname(buffer_a.id) == mark.value then
+							a = 0
+							break
+						elseif
+							vim.fn.bufname(buffer_b.id) == full_path or vim.fn.bufname(buffer_b.id) == mark.value
+						then
+							b = 0
+							break
+						end
+					end
+					return a < b
+				end,
+
 				offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "left" } },
 				show_buffer_icons = true, -- disable filetype icons for buffers
 				show_buffer_close_icons = false,
 				show_close_icon = true,
 				show_tab_indicators = true,
+
 				persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 				-- can also be a table containing 2 custom separators
 				-- [focused and unfocused]. eg: { '|', '|' }
 				separator_style = "slant",
 				enforce_regular_tabs = false,
 				always_show_bufferline = true,
-				sort_by = "relative_directory",
+				-- sort_by = "relative_directory",
 			},
 		})
 
